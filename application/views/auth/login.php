@@ -15,10 +15,10 @@
     <div class="container">
         <div class="cover">
             <div class="front">
-                <img src="images/frontImg.jpg" alt="">
+                <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/kecepatan.svg" alt="">
                 <div class="text">
-                    <span class="text-1">Every new friend is a <br> new adventure</span>
-                    <span class="text-2">Let's get connected</span>
+                    <span class="text-1">Selamat Datang Di <br> Absensi App</span>
+                    <span class="text-2">Silahkan Login</span>
                 </div>
             </div>
             <div class="back">
@@ -33,21 +33,23 @@
             <div class="form-content">
                 <div class="login-form">
                     <div class="title">Login</div>
-                    <form action="#">
+                    <form action="<?php echo base_url(); ?>Auth/aksi_login" method="post">
                         <div class="input-boxes">
                             <div class="input-box">
                                 <i class="fas fa-envelope"></i>
-                                <input type="text" placeholder="Enter your email" required>
+                                <input type="text" placeholder="Enter your email" name="email" required>
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Enter your password" required>
+                                <input type="password" placeholder="Enter your password" name="password" required>
                             </div>
-                            <div class="text"><a href="#">Forgot password?</a></div>
+                            <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit">
                             </div>
-                            <div class="text sign-up-text">Please Login For Access This App</div>
+                            <!-- <div class="text sign-up-text">Silahkan login dulu untuk mengakses aplikasi ini</div> -->
+                            <div class="text sign-up-text">Belum mempunyai akun? <a
+                                    href="<?php echo base_url('auth/register')?>">registrasi sekarang</a></div>
                         </div>
                     </form>
                 </div>

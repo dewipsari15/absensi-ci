@@ -20,16 +20,16 @@
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+                        <i class="fas fa-tachometer-alt fa-fw fa-lg me-3"></i><span>Dashboard</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-address-card me-3"></i><span>Absensi</span>
+                        <i class="fa-solid fa-address-card fa-lg me-3"></i><span>Absensi</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fa-solid fa-clock-rotate-left me-3"></i><span>History</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fa-solid fa-clock-rotate-left fa-lg me-3"></i><span>History</span></a>
+                    <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a>
-                    <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -61,8 +61,8 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand" href="#">
-                    <img src="https://img2.pngdownload.id/20181203/cr/kisspng-logo-brand-product-design-timesheet-timesheet-pdf-download-broadline-recruiters-5c05ab1e2f6aa7.5472256615438753581942.jpg"
-                        height="40" alt="" loading="lazy" />
+                    <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/digides_absensi.svg" height="50"
+                        alt="" loading="lazy" />
                 </a>
                 <h5>Absensi Karyawan</h5>
                 <!-- Search form -->
@@ -76,7 +76,7 @@
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     <!-- Avatar -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                        <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center fa-2xl" href="#"
                             id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user"></i>
                         </a>
@@ -84,11 +84,11 @@
                             <li>
                                 <a class="dropdown-item" href="#">My profile</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a class="dropdown-item" href="#">Settings</a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a>
                             </li>
                         </ul>
                     </li>
