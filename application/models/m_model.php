@@ -1,6 +1,17 @@
 <?php
 
-class M_model extends CI_Model{
+class M_model extends CI_Model
+    {
+        function get_absensi_by_karyawan($id_karyawan) {
+            $this->db->where('id_karyawan', $id_karyawan);
+            return $this->db->get('absensi')->result();
+        }
+
+        function get_data_by_user($table, $user_id) {
+            $this->db->where('id_karyawan', $user_id);
+            return $this->db->get($table);
+        }
+
         function get_data($table){
             return $this->db->get($table);
         }
@@ -28,5 +39,15 @@ class M_model extends CI_Model{
             $this->db->update($table, $data, $where);
             return $this->db->affected_rows();
         }
-}
+
+        public function updateStatusPulang($id) {
+            date_default_timezone_set('Asia/Jakarta');
+            $data = array(
+                'jam_pulang' => date('Y-m-d H:i:s'),
+                'status' => 'true'
+            );
+            $this->db->where('id', $id);
+            $this->db->update('absensi', $data);
+        }
+    }
 ?>

@@ -1,0 +1,14 @@
+/* CSS umum di luar media query */
+.container.w-75 {
+    /* Gaya umum untuk container dengan lebar 75% */
+    width: 75%;
+}
+
+@media (min-width: 768px) {
+
+    /* CSS untuk layar desktop (lebar minimal 768px) */
+    .container.w-75 {
+        /* Gaya khusus untuk container dengan lebar 75% pada desktop */
+        margin-left: 20%;
+    }
+}
