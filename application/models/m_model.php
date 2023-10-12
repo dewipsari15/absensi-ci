@@ -49,5 +49,46 @@ class M_model extends CI_Model
             $this->db->where('id', $id);
             $this->db->update('absensi', $data);
         }
+
+        public function image_user()
+        {
+            $id_karyawan = $this->session->userdata('id');
+            $this->db->select('image');
+            $this->db->from('user');
+            $this->db->where('id_karyawan');
+            $query = $this->db->get();
+
+            if ($query->num_rows() > 0) {
+                $result = $query->row();
+                return $result->image;
+            } else {
+                return false;
+            }
+        }
+
+        public function update_image($user_id, $new_image) {
+            $data = array(
+                'image' => $new_image
+            );
+    
+            $this->db->where('id', $user_id); // Sesuaikan dengan kolom dan nama tabel yang sesuai
+            $this->db->update('user', $data); // Sesuaikan dengan nama tabel Anda
+    
+            return $this->db->affected_rows(); // Mengembalikan jumlah baris yang diupdate
+        }
+
+        public function get_current_image($user_id) {
+            $this->db->select('image');
+            $this->db->from('user'); // Gantilah 'user_table' dengan nama tabel Anda
+            $this->db->where('id', $user_id);
+            $query = $this->db->get();
+    
+            if ($query->num_rows() > 0) {
+                $row = $query->row();
+                return $row->image;
+            }
+    
+            return null; // Kembalikan null jika data tidak ditemukan
+        }
     }
 ?>

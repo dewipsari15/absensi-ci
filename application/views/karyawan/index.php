@@ -39,7 +39,7 @@
                             <h5 class="text-center">Total</h5>
                         </div>
                         <div class="card-body">
-                            <h4>9 Hari</h4>
+                            <h4><?php echo $absensi; ?> Hari</h4>
                         </div>
                     </div>
                 </div>

@@ -40,8 +40,9 @@
                                 <input type="text" placeholder="Enter your email" name="email" required>
                             </div>
                             <div class="input-box">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Enter your password" name="password" required>
+                                <i class="fas fa-lock" id="password-toggle"></i>
+                                <input type="password" placeholder="Enter your password" name="password" id="password"
+                                    required>
                             </div>
                             <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
                             <div class="button input-box">
@@ -57,5 +58,24 @@
         </div>
     </div>
 </body>
+
+<script>
+// Mengambil elemen input dan ikon
+const passwordInput = document.getElementById('password');
+const passwordToggle = document.getElementById('password-toggle');
+
+// Menambahkan event listener untuk mengubah tipe input menjadi "text" atau "password" saat ikon diklik
+passwordToggle.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordToggle.classList.remove('fa-lock');
+        passwordToggle.classList.add('fa-unlock');
+    } else {
+        passwordInput.type = 'password';
+        passwordToggle.classList.remove('fa-unlock');
+        passwordToggle.classList.add('fa-lock');
+    }
+});
+</script>
 
 </html>

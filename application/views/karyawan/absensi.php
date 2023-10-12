@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -41,13 +42,7 @@
                                     <td><?php echo $row->date ?></td>
                                     <td><?php echo $row->jam_masuk ?></td>
                                     <td><?php echo $row->jam_pulang ?></td>
-                                    <td>
-                                        <?php if ($row->keterangan_izin == 'true'): ?>
-                                        <p>Izin</p>
-                                        <?php else: ?>
-                                        <p>Masuk</p>
-                                        <?php endif; ?>
-                                    </td>
+                                    <td><?php echo $row->keterangan_izin ?></td>
                                     <td>
                                         <?php if ($row->status === 'false') { ?>
                                         <a href="<?php echo base_url('karyawan/pulang/') . $row->id; ?>"
@@ -62,12 +57,13 @@
                                     </td>
                                     <td>
                                         <div class="d-flex flex-column flex-md-row justify-content-between">
-                                            <?php if ($row->keterangan_izin == 'true'): ?>
-                                            <button class="btn btn-sm btn-success mb-2 mb-md-0 mr-md-2" disabled>
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                            <?php else: ?>
+                                            <?php if ($row->keterangan_izin == 'masuk'): ?>
                                             <a href="<?php echo base_url('karyawan/update_absen/'). $row->id; ?>"
+                                                class="btn btn-sm btn-success mb-2 mb-md-0 mr-md-2">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <?php else: ?>
+                                            <a href="<?php echo base_url('karyawan/update_izin/'). $row->id; ?>"
                                                 class="btn btn-sm btn-success mb-2 mb-md-0 mr-md-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>

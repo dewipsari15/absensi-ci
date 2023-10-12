@@ -52,22 +52,13 @@
                                     required>
                             </div>
                             <div class="input-box">
-                                <i class="fas fa-address-card"></i>
+                                <i class="fas fa-hashtag"></i>
                                 <input type="text" placeholder="Enter your first name" name="nama_depan" required>
                             </div>
                             <div class="input-box">
-                                <i class="fas fa-address-card"></i>
+                                <i class="fas fa-hashtag"></i>
                                 <input type="text" placeholder="Enter your last name" name="nama_belakang" required>
                             </div>
-                            <!-- <div class="form-group d-flex align-items-center">
-                                <label for="role" class="me-2"><i class="fas fa-user-check"
-                                        style="color: #79ac79;"></i></label>
-                                <select class="form-select" id="role" name="role" required>
-                                    <option disabled selected>Select your role</option>
-                                    <option value="Karyawan">Karyawan</option>
-                                    <option value="Admin">Admin</option>
-                                </select>
-                            </div> -->
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit">
                             </div>
