@@ -23,8 +23,8 @@
                         <input type="hidden" name="id" value="<?php echo $absen->id ?>">
                         <div class="mb-3 col-12">
                             <label for="Kegiatan" class="form-label">Kegiatan</label>
-                            <textarea class="form-control" aria-label="With textarea" name="kegiatan"
-                                value="<?php echo $absen->kegiatan ?>"></textarea>
+                            <textarea class="form-control" aria-label="With textarea"
+                                name="kegiatan"><?php echo $absen->kegiatan ?></textarea>
                         </div>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-danger" href="javascript:history.go(-1)">Kembali</a>
