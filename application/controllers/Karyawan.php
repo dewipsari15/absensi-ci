@@ -59,18 +59,34 @@ class Karyawan extends CI_Controller {
 	
 	public function aksi_tambah_absen() {
 		$id_karyawan = $this->session->userdata('id');
-        $data = [
-			'id_karyawan' => $id_karyawan,
-			'kegiatan' => $this->input->post('kegiatan'),
-			'status' => 'false',
-			'keterangan_izin' => 'masuk',
-			'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
-		];
-		$this->m_model->tambah_data('absensi', $data);
-        $this->session->set_flashdata('berhasil_absen', 'Berhasil Absen.');
+		$tanggal_sekarang = date('Y-m-d'); // Mendapatkan tanggal hari ini
+	
+		// Cek apakah sudah melakukan absen hari ini
+		$is_already_absent = $this->m_model->cek_absen($id_karyawan, $tanggal_sekarang);
+	
+		// Cek apakah sudah melakukan izin hari ini
+		$is_already_izin = $this->m_model->cek_izin($id_karyawan, $tanggal_sekarang);
+	
+		if ($is_already_absent) {
+			$this->session->set_flashdata('gagal_absen', 'Anda sudah melakukan absen hari ini.');
+		} elseif ($is_already_izin) {
+			$this->session->set_flashdata('gagal_absen', 'Anda sudah mengajukan izin hari ini.');
+		} else {
+			$data = [
+				'id_karyawan' => $id_karyawan,
+				'kegiatan' => $this->input->post('kegiatan'),
+				'status' => 'false',
+				'keterangan_izin' => 'masuk',
+				'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
+				'date' => $tanggal_sekarang, // Menyimpan tanggal absen
+			];
+			$this->m_model->tambah_data('absensi', $data);
+			$this->session->set_flashdata('berhasil_absen', 'Berhasil Absen.');
+		}
+	
 		redirect(base_url('karyawan/absen'));
-    }
-
+	}
+	
 	public function aksi_update_absen()
     {
         $id_karyawan = $this->session->userdata('id');
@@ -92,18 +108,34 @@ class Karyawan extends CI_Controller {
 
 	public function aksi_izin() {
 		$id_karyawan = $this->session->userdata('id');
-        $data = [
-			'id_karyawan' => $id_karyawan,
-			'kegiatan' => '-',
-			'status' => 'true',
-			'keterangan_izin' => $this->input->post('keterangan_izin'),
-			'jam_masuk' => '00:00:00', // Mengosongkan jam_masuk
-        	'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
-		];
-		$this->m_model->tambah_data('absensi', $data);
-        $this->session->set_flashdata('berhasil_izin', 'Berhasil Izin.');
+		$tanggal_sekarang = date('Y-m-d'); // Mendapatkan tanggal hari ini
+	
+		// Cek apakah sudah melakukan absen hari ini
+		$is_already_absent = $this->m_model->cek_absen($id_karyawan, $tanggal_sekarang);
+	
+		// Cek apakah sudah melakukan izin hari ini
+		$is_already_izin = $this->m_model->cek_izin($id_karyawan, $tanggal_sekarang);
+	
+		if ($is_already_absent) {
+			$this->session->set_flashdata('gagal_izin', 'Anda sudah melakukan absen hari ini.');
+		} elseif ($is_already_izin) {
+			$this->session->set_flashdata('gagal_izin', 'Anda sudah mengajukan izin hari ini.');
+		} else {
+			$data = [
+				'id_karyawan' => $id_karyawan,
+				'kegiatan' => '-',
+				'status' => 'true',
+				'keterangan_izin' => $this->input->post('keterangan_izin'),
+				'jam_masuk' => '00:00:00', // Mengosongkan jam_masuk
+				'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
+				'date' => $tanggal_sekarang, // Menyimpan tanggal izin
+			];
+			$this->m_model->tambah_data('absensi', $data);
+			$this->session->set_flashdata('berhasil_izin', 'Berhasil Izin.');
+		}
+	
 		redirect(base_url('karyawan/absen'));
-    }
+	}
 
 	public function aksi_update_izin()
     {

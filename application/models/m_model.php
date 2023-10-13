@@ -90,5 +90,30 @@ class M_model extends CI_Model
     
             return null; // Kembalikan null jika data tidak ditemukan
         }
+
+        public function cek_absen($id_karyawan, $tanggal) {
+            $this->db->where('id_karyawan', $id_karyawan);
+            $this->db->where('date', $tanggal);
+            $query = $this->db->get('absensi');
+        
+            if ($query->num_rows() > 0) {
+                return true; // Jika sudah ada entri absen untuk karyawan dan tanggal tertentu
+            } else {
+                return false; // Jika belum ada entri absen untuk karyawan dan tanggal tertentu
+            }
+        }
+
+        public function cek_izin($id_karyawan, $tanggal) {
+            $this->db->where('id_karyawan', $id_karyawan);
+            $this->db->where('date', $tanggal);
+            $this->db->where('status', 'true'); // Hanya mencari entri dengan status izin
+            $query = $this->db->get('absensi');
+
+            if ($query->num_rows() > 0) {
+                return true; // Jika sudah ada entri izin untuk karyawan dan tanggal tertentu
+            } else {
+                return false; // Jika belum ada entri izin untuk karyawan dan tanggal tertentu
+            }
+        }
     }
 ?>
