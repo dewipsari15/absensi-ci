@@ -91,7 +91,7 @@ class Auth extends CI_Controller {
     // register admin
     public function register_admin()
 	{
-		$this->load->view('auth/register');
+		$this->load->view('auth/register_admin');
 	}
 
     public function aksi_register_admin() 
