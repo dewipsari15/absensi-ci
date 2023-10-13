@@ -97,7 +97,7 @@ class Karyawan extends CI_Controller {
         ('absensi', $data, array('id'=>$this->input->post('id')));
         if($eksekusi)
         {
-            $this->session->set_flashdata('berhasil_update', 'Berhasil mengubah kegiatan');
+            $this->session->set_flashdata('berhasil_update_absen', 'Berhasil mengubah kegiatan');
             redirect(base_url('karyawan/absen'));
         }
         else
@@ -147,7 +147,7 @@ class Karyawan extends CI_Controller {
         ('absensi', $data, array('id'=>$this->input->post('id')));
         if($eksekusi)
         {
-            $this->session->set_flashdata('berhasil_update', 'Berhasil mengubah keterangan');
+            $this->session->set_flashdata('berhasil_update_izin', 'Berhasil mengubah keterangan');
             redirect(base_url('karyawan/absen'));
         }
         else
@@ -163,6 +163,7 @@ class Karyawan extends CI_Controller {
 
 	public function hapus($id) {
         $this->m_model->delete('absensi', 'id', $id);
+		$this->session->set_flashdata('berhasil_menghapus', 'Data berhasil dihapus.');
 		redirect(base_url('karyawan/absen'));
     }
 
@@ -190,8 +191,6 @@ class Karyawan extends CI_Controller {
 				redirect(base_url('karyawan/profile'));
 			}
 		}
-
-		
 
 		$this->session->set_userdata($data);
 		$update_result = $this->m_model->update_data('user', $data, array('id' => $this->session->userdata('id')));
@@ -224,11 +223,15 @@ class Karyawan extends CI_Controller {
 			}
 	
 			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
+			$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
+
 	
 			// Redirect atau tampilkan pesan keberhasilan
 			redirect('karyawan/profile'); // Gantilah dengan halaman yang sesuai
 		} else {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error_profile', $error['error']);
+			redirect('karyawan/profile');
 			// Tangani kesalahan unggah gambar
 		}
 	}

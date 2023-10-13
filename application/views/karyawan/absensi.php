@@ -91,7 +91,7 @@ function hapus(id) {
         text: "Anda tidak dapat mengembalikannya!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#198754',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Hapus!',
         cancelButtonText: 'Batal'
@@ -102,5 +102,100 @@ function hapus(id) {
     });
 }
 </script>
+<?php if($this->session->flashdata('gagal_absen')){ ?>
+<script>
+Swal.fire({
+    title: "Error!",
+    text: "<?php echo $this->session->flashdata('gagal_absen'); ?>",
+    icon: "error",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_absen')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_absen'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('gagal_izin')){ ?>
+<script>
+Swal.fire({
+    title: "Error!",
+    text: "<?php echo $this->session->flashdata('gagal_izin'); ?>",
+    icon: "error",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_izin')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_izin'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_update_absen')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_update_absen'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_update_izin')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_update_izin'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_menghapus')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_menghapus'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('berhasil_menghapus')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_menghapus'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
 
 </html>
