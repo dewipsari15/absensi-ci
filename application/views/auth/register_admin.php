@@ -36,7 +36,8 @@
             <div class="form-content">
                 <div class="signup-form">
                     <div class="title">Register</div>
-                    <form action="<?php echo base_url('auth/aksi_register_admin'); ?>" method="post">
+                    <form action="<?php echo base_url('auth/aksi_register_admin'); ?>" method="post"
+                        enctype="multipart/form-data">
                         <div class="input-boxes">
                             <div class="input-box">
                                 <i class="fas fa-envelope"></i>
