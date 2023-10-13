@@ -46,9 +46,22 @@ class M_model extends CI_Model
                 'jam_pulang' => date('Y-m-d H:i:s'),
                 'status' => 'true'
             );
+        
+            // Dapatkan data jam masuk sebelum memperbarui
+            $this->db->select('jam_masuk');
+            $this->db->where('id', $id);
+            $query = $this->db->get('absensi');
+            $row = $query->row();
+            $jam_masuk = $row->jam_masuk; // Dapatkan nilai jam masuk sebelum memperbarui
+        
+            // Tetapkan nilai jam masuk yang sama ke dalam data sebelum memperbarui
+            $data['jam_masuk'] = $jam_masuk;
+        
+            // Lakukan pembaruan data dengan tetap mempertahankan jam masuk yang sama
             $this->db->where('id', $id);
             $this->db->update('absensi', $data);
         }
+        
 
         public function image_user()
         {

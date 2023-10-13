@@ -158,7 +158,8 @@ class Karyawan extends CI_Controller {
 
 	public function pulang($id) {
         $this->m_model->updateStatusPulang($id);
-        redirect('karyawan/absensi');
+		$this->session->set_flashdata('berhasil_pulang', 'Berhasil pulang.');
+        redirect('karyawan/absen');
     }
 
 	public function hapus($id) {

@@ -198,4 +198,16 @@ Swal.fire({
 </script>
 <?php } ?>
 
+<?php if($this->session->flashdata('berhasil_pulang')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_pulang'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
 </html>
