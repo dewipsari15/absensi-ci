@@ -18,6 +18,8 @@ class Karyawan extends CI_Controller {
 		
 		$data['absensi_count'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
 		$data['absensi'] = count($data['absensi_count']);
+        $data['total_absen'] = $this->m_model->get_absen('absensi', $this->session->userdata('id'))->num_rows();
+        $data['total_izin'] = $this->m_model->get_izin('absensi', $this->session->userdata('id'))->num_rows();
 		
 		$this->load->view('karyawan/index', $data);
 	}

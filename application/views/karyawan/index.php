@@ -19,7 +19,7 @@
                             <h5 class="text-center">Masuk Kerja</h5>
                         </div>
                         <div class="card-body">
-                            <h4>7 Hari</h4>
+                            <h4><?php echo $total_absen; ?> Hari</h4>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <h5 class="text-center">Izin Kerja</h5>
                         </div>
                         <div class="card-body">
-                            <h4>2 Hari</h4>
+                            <h4><?php echo $total_izin; ?> Hari</h4>
                         </div>
                     </div>
                 </div>
