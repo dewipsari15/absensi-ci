@@ -15,9 +15,8 @@ class Karyawan extends CI_Controller {
 	public function index()
 	{
 		$id_karyawan = $this->session->userdata('id');
-		
-		$data['absensi_count'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
-		$data['absensi'] = count($data['absensi_count']);
+		$data['absensi'] = $this->m_model->get_absensi_by_karyawan($id_karyawan);
+		$data['absensi_count'] = count($data['absensi']);
         $data['total_absen'] = $this->m_model->get_absen('absensi', $this->session->userdata('id'))->num_rows();
         $data['total_izin'] = $this->m_model->get_izin('absensi', $this->session->userdata('id'))->num_rows();
 		
@@ -189,8 +188,9 @@ class Karyawan extends CI_Controller {
 		if (!empty($password_baru)) {
 			if ($password_baru === $konfirmasi_password) {
 				$data['password'] = md5($password_baru);
+				$this->session->set_flashdata('ubah_password', 'Berhasil mengubah password');
 			} else {
-				$this->session->set_flashdata('message', 'Password baru dan Konfirmasi password tidak sama');
+				$this->session->set_flashdata('kesalahan_password', 'Password baru dan Konfirmasi password tidak sama');
 				redirect(base_url('karyawan/profile'));
 			}
 		}
@@ -199,8 +199,10 @@ class Karyawan extends CI_Controller {
 		$update_result = $this->m_model->update_data('user', $data, array('id' => $this->session->userdata('id')));
 
 		if ($update_result) {
+			$this->session->set_flashdata('update_user', 'Data berhasil diperbarui');
 			redirect(base_url('karyawan/profile'));
 		} else {
+			$this->session->set_flashdata('gagal_update', 'Gagal memperbarui data');
 			redirect(base_url('karyawan/profile'));
 		}
 	}
