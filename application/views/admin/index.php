@@ -12,34 +12,43 @@
     <?php $this->load->view('components/sidebar_admin'); ?>
     <div class="main m-4">
         <div class="container w-75">
-            <div class="row justify-content-end">
+            <div class="row justify-content-between mb-3">
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="text-center">Masuk Kerja</h5>
+                            <h5 class="text-center">Total User</h5>
                         </div>
                         <div class="card-body">
-                            <h4>7 Hari</h4>
+                            <h4 class="d-flex justify-content-between">
+                                <i class="fa-solid fa-user fa-2xl mt-2"></i>
+                                <?php echo $user; ?> User
+                            </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="text-center">Izin Kerja</h5>
+                            <h5 class="text-center">Total Karyawan</h5>
                         </div>
                         <div class="card-body">
-                            <h4>2 Hari</h4>
+                            <h4 class="d-flex justify-content-between">
+                                <i class="fa-solid fa-user fa-2xl mt-2"></i>
+                                <?php echo $karyawan; ?> Karyawan
+                            </h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="text-center">Total</h5>
+                            <h5 class="text-center">Total Absen</h5>
                         </div>
                         <div class="card-body">
-                            <h4>7 Hari</h4>
+                            <h4 class="d-flex justify-content-between">
+                                <i class="fa-solid fa-calendar-day fa-2xl mt-2"></i>
+                                <?php echo $absensi_num; ?> Hari
+                            </h4>
                         </div>
                     </div>
                 </div>

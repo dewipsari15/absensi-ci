@@ -22,6 +22,10 @@
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw fa-lg me-3"></i><span>Dashboard</span>
                     </a>
+                    <a href="<?php echo base_url('admin/user') ?>"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fa-solid fa-user fa-lg me-3"></i><span>Karyawan</span>
+                    </a>
                     <a href="<?php echo base_url('admin/absen') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fa-solid fa-address-card fa-lg me-3"></i><span>Absen</span>
@@ -62,7 +66,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="">My
+                                <a class="dropdown-item" href="<?php echo base_url('admin/profile') ?>">My
                                     profile</a>
                             </li>
                             <li>

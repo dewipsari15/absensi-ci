@@ -180,6 +180,14 @@ class M_model extends CI_Model
             $this->db->where('MONTH(absensi.date)', $bulan);
             $query = $this->db->get();
             return $query->result_array();
-        } 
+        }
+
+        public function get_absensi_count() {
+            return $this->db->count_all_results('absensi');
+        }
+
+        public function get_karyawan_rows() {
+            return $this->db->get_where('user', array('role' => 'karyawan'))->num_rows();
+        }        
     }
 ?>
