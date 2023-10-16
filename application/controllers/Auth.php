@@ -35,6 +35,7 @@ class Auth extends CI_Controller {
                 $this->session->set_flashdata('berhasil_login', 'Selamat datang diaplikasi absensi.');
                 redirect(base_url() . 'karyawan');
             } elseif ($this->session->userdata('role') == 'admin') {
+                $this->session->set_flashdata('berhasil_login', 'Selamat datang diaplikasi absensi.');
 				redirect(base_url() . "admin");
 			} else {
                 $this->session->set_flashdata('gagal_login', 'Silahkan periksa email dan password anda.');
@@ -84,7 +85,7 @@ class Auth extends CI_Controller {
         ];
 
         $this->db->insert('user', $data);
-
+        $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
         redirect('auth');
     }
 
@@ -126,7 +127,7 @@ class Auth extends CI_Controller {
         ];
 
         $this->db->insert('user', $data);
-
+        $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
         redirect('auth');
     }
 

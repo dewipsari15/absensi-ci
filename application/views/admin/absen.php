@@ -12,41 +12,9 @@
     <?php $this->load->view('components/sidebar_admin'); ?>
     <div class="main m-4">
         <div class="container w-75">
-            <div class="row justify-content-end">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="text-center">Masuk Kerja</h5>
-                        </div>
-                        <div class="card-body">
-                            <h4>7 Hari</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="text-center">Izin Kerja</h5>
-                        </div>
-                        <div class="card-body">
-                            <h4>2 Hari</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="text-center">Total</h5>
-                        </div>
-                        <div class="card-body">
-                            <h4>7 Hari</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Histori Absen</h5>
+                    <h5>Histori Absen Karyawan</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -62,7 +30,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 0; foreach ($absensi as $row) : $no++; if($no > 10) break;?>
+                                <?php $no=0;foreach($absensi as $row): $no++ ?>
                                 <tr>
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->kegiatan ?></td>
@@ -74,12 +42,6 @@
                                 <?php endforeach ?>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-end">
-                        <a href="<?php echo base_url('admin/absen') ?>" class="btn btn-success"><i
-                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

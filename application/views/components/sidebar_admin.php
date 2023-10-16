@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -17,17 +18,26 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                    <a href="<?php echo base_url('admin') ?>" class="list-group-item list-group-item-action py-2 ripple"
+                        aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw fa-lg me-3"></i><span>Dashboard</span>
                     </a>
-                    <a href="" class="list-group-item list-group-item-action py-2 ripple">
+                    <a href="<?php echo base_url('admin/absen') ?>"
+                        class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fa-solid fa-address-card fa-lg me-3"></i><span>Absen</span>
                     </a>
-                    <a href="" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-address-card fa-lg me-3"></i><span>Izin</span>
+                    <a href="<?php echo base_url('admin/rekapPerHari') ?>"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Harian</span>
                     </a>
-                    <a href="" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fa-solid fa-clock-rotate-left fa-lg me-3"></i><span>History</span></a>
+                    <a href="<?php echo base_url('admin/rekapPerMinggu') ?>"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Mingguan</span>
+                    </a>
+                    <a href="<?php echo base_url('admin/rekapPerBulan') ?>"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Bulanan</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -56,7 +66,7 @@
                                     profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a>
+                                <a class="dropdown-item" onclick="logout()">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -71,5 +81,24 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 </body>
+
+<script>
+function logout() {
+    Swal.fire({
+        title: 'Konfirmasi',
+        text: 'Apakah Anda yakin ingin keluar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Keluar',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?php echo base_url('auth/logout'); ?>";
+        }
+    });
+}
+</script>
 
 </html>

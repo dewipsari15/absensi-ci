@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -60,7 +61,7 @@
                                     profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a>
+                                <a class="dropdown-item" onclick="logout()">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -75,5 +76,24 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 </body>
+
+<script>
+function logout() {
+    Swal.fire({
+        title: 'Konfirmasi',
+        text: 'Apakah Anda yakin ingin keluar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Keluar',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?php echo base_url('auth/logout'); ?>";
+        }
+    });
+}
+</script>
 
 </html>

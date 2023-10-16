@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/auth.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -77,5 +77,54 @@ passwordToggle.addEventListener('click', function() {
     }
 });
 </script>
+
+
+<?php if($this->session->flashdata('berhasil_login')){ ?>
+<script>
+Swal.fire({
+    title: 'Selamat datang',
+    text: '<?php echo $this->session->flashdata('berhasil_login'); ?>',
+    icon: 'success',
+    confirmButtonText: 'OK'
+}).then((result) => {
+    if (result.isConfirmed) {
+        window.location.href = "<?php echo base_url('karyawan'); ?>";
+    }
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('gagal_login')){ ?>
+<script>
+Swal.fire({
+    title: 'Login Gagal',
+    text: '<?php echo $this->session->flashdata('gagal_login'); ?>',
+    icon: 'error',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('gagal_login_i')){ ?>
+<script>
+Swal.fire({
+    title: 'Login Gagal',
+    text: '<?php echo $this->session->flashdata('gagal_login_i'); ?>',
+    icon: 'error',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('register_success')){ ?>
+<script>
+Swal.fire({
+    title: 'Registrasi Berhasil',
+    text: '<?php echo $this->session->flashdata('register_success'); ?>',
+    icon: 'success',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php } ?>
 
 </html>

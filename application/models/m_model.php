@@ -14,14 +14,14 @@ class M_model extends CI_Model
 
         function get_izin($table, $id_karyawan)
         {
-        return $this->db->where('id_karyawan', $id_karyawan)
+            return $this->db->where('id_karyawan', $id_karyawan)
             ->where('kegiatan', '-')
             ->get($table);
         }
 
         function get_absen($table, $id_karyawan)
         {
-        return $this->db->where('id_karyawan', $id_karyawan)
+            return $this->db->where('id_karyawan', $id_karyawan)
             ->where('keterangan_izin', 'masuk')
             ->get($table);
         }
@@ -81,7 +81,6 @@ class M_model extends CI_Model
             $this->db->update('absensi', $data);
         }
         
-
         public function image_user()
         {
             $id_karyawan = $this->session->userdata('id');
@@ -147,5 +146,40 @@ class M_model extends CI_Model
                 return false; // Jika belum ada entri izin untuk karyawan dan tanggal tertentu
             }
         }
+
+        public function getPerHari($tanggal)
+        {
+            $this->db->select('absensi.id, absensi.date, absensi.kegiatan, absensi.id_karyawan, absensi.jam_masuk, absensi.jam_pulang, absensi.keterangan_izin');
+            $this->db->from('absensi');
+            $this->db->where('absensi.date', $tanggal); // Menyaring data berdasarkan tanggal
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+        public function getRekapPerMinggu($start_date, $end_date) {
+            $this->db->select('*');
+            $this->db->from('absensi');
+            $this->db->where('date >=', $start_date);
+            $this->db->where('date <=', $end_date);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function getRekapPerBulan($bulan) {
+            $this->db->select('MONTH(date) as bulan, COUNT(*) as total_absensi');
+            $this->db->from('absensi');
+            $this->db->where('MONTH(date)', $bulan); // Menyaring data berdasarkan bulan
+            $this->db->group_by('bulan');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+        public function getRekapHarianByBulan($bulan) {
+            $this->db->select('*');
+            $this->db->from('absensi');
+            $this->db->where('MONTH(absensi.date)', $bulan);
+            $query = $this->db->get();
+            return $query->result_array();
+        } 
     }
 ?>
