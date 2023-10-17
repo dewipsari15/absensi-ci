@@ -17,20 +17,20 @@
                     <h5>Rekap Mingguan</h5>
                 </div>
                 <div class="card-body">
-                    <form action="<?= base_url('admin/rekapPerMinggu'); ?>" method="post" class="row g-3">
-                        <div class="col-md-4">
+                    <form action="<?= base_url('admin/rekapPerMinggu'); ?>" method="get">
+                        <div class="d-flex justify-content-between">
                             <div class="input-group">
                                 <span class="input-group-text">Tanggal awal</span>
-                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                <input type="date" class="form-control" id="start_date" name="start_date"
+                                    value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
                             </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="input-group">
-                                <span class="input-group-text">Tanggal awal</span>
-                                <input type="date" class="form-control" id="end_date" name="end_date">
+                                <span class="input-group-text">Tanggal akhir</span>
+                                <input type="date" class="form-control" id="end_date" name="end_date"
+                                    value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>">
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary"
+                                formaction="<?php echo base_url('admin/export_mingguan')?>">Export</button>
                             <button type="submit" class="btn btn-success">Filter</button>
                         </div>
                     </form>

@@ -21,19 +21,45 @@
                         <div class="d-flex justify-content-between">
                             <select class="form-control" id="bulan" name="bulan">
                                 <option>Pilih Bulan</option>
-                                <option value="1">Januari</option>
-                                <option value="2">Februari</option>
-                                <option value="3">Maret</option>
-                                <option value="4">April</option>
-                                <option value="5">Mei</option>
-                                <option value="6">Juni</option>
-                                <option value="7">Juli</option>
-                                <option value="8">Agustus</option>
-                                <option value="9">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
+                                <option value="1"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '1') echo 'selected'; ?>>Januari
+                                </option>
+                                <option value="2"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '2') echo 'selected'; ?>>
+                                    Februari</option>
+                                <option value="3"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '3') echo 'selected'; ?>>Maret
+                                </option>
+                                <option value="4"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '4') echo 'selected'; ?>>April
+                                </option>
+                                <option value="5"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '5') echo 'selected'; ?>>Mei
+                                </option>
+                                <option value="6"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '6') echo 'selected'; ?>>Juni
+                                </option>
+                                <option value="7"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '7') echo 'selected'; ?>>Juli
+                                </option>
+                                <option value="8"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '8') echo 'selected'; ?>>Agustus
+                                </option>
+                                <option value="9"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '9') echo 'selected'; ?>>
+                                    September</option>
+                                <option value="10"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '10') echo 'selected'; ?>>
+                                    Oktober</option>
+                                <option value="11"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '11') echo 'selected'; ?>>
+                                    November</option>
+                                <option value="12"
+                                    <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '12') echo 'selected'; ?>>
+                                    Desember</option>
                             </select>
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary"
+                                formaction="<?php echo base_url('admin/export_bulanan')?>">Export</button>
                             <button type="submit" class="btn btn-success">Filter</button>
                         </div>
                     </form>
@@ -49,13 +75,12 @@
                         <table class="table" data-month="<?= $data['bulan'] ?>">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal</th>
-                                    <th>Kegiatan</th>
-                                    <th>Masuk</th>
-                                    <th>Pulang</th>
-                                    <th>Status</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Kegiatan</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jam Masuk</th>
+                                    <th scope="col">Jam Pulang</th>
+                                    <th scope="col">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +94,7 @@
                                     <td><?= $rekap_harian['kegiatan']; ?></td>
                                     <td><?= $rekap_harian['jam_masuk']; ?></td>
                                     <td><?= $rekap_harian['jam_pulang']; ?></td>
-                                    <td><?= $rekap_harian['status']; ?></td>
+                                    <td><?= $rekap_harian['keterangan_izin']; ?></td>
                                 </tr>
                                 <?php endif; ?>
                                 <?php endforeach; ?>

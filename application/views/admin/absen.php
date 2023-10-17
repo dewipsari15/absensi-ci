@@ -15,6 +15,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Daftar Absen Karyawan</h5>
+                    <a href="<?php echo base_url('admin/export_absen'); ?>" class="btn btn-sm btn-primary"><i
+                            class="fa fa-download m-1"></i>Export</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

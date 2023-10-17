@@ -46,11 +46,11 @@
                                 <?php $no=0;foreach ($perhari as $rekap): $no++ ?>
                                 <tr>
                                     <td><?= $no; ?></td>
-                                    <td><?= $rekap['date']; ?></td>
-                                    <td><?= $rekap['kegiatan']; ?></td>
-                                    <td><?= $rekap['jam_masuk']; ?></td>
-                                    <td><?= $rekap['jam_pulang']; ?></td>
-                                    <td><?= $rekap['keterangan_izin']; ?></td>
+                                    <td><?= $rekap->date; ?></td>
+                                    <td><?= $rekap->kegiatan; ?></td>
+                                    <td><?= $rekap->jam_masuk; ?></td>
+                                    <td><?= $rekap->jam_pulang; ?></td>
+                                    <td><?= $rekap->keterangan_izin; ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
