@@ -22,9 +22,9 @@
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw fa-lg me-3"></i><span>Dashboard</span>
                     </a>
-                    <a href="<?php echo base_url('admin/user') ?>"
+                    <a href="<?php echo base_url('admin/karyawan') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-user fa-lg me-3"></i><span>Karyawan</span>
+                        <i class="fa-solid fa-users-gear fa-lg me-3"></i><span>Karyawan</span>
                     </a>
                     <a href="<?php echo base_url('admin/absen') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
@@ -32,15 +32,15 @@
                     </a>
                     <a href="<?php echo base_url('admin/rekapPerHari') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Harian</span>
+                        <i class="fa-solid fa-calendar-day fa-lg me-3"></i><span>Rekap Harian</span>
                     </a>
                     <a href="<?php echo base_url('admin/rekapPerMinggu') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Mingguan</span>
+                        <i class="fa-solid fa-calendar-week fa-lg me-3"></i><span>Rekap Mingguan</span>
                     </a>
                     <a href="<?php echo base_url('admin/rekapPerBulan') ?>"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-arrows-rotate fa-lg me-3"></i><span>Rekap Bulanan</span>
+                        <i class="fa-regular fa-calendar fa-lg me-3"></i><span>Rekap Bulanan</span>
                     </a>
                 </div>
             </div>

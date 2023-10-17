@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-body">
                             <h4 class="d-flex justify-content-between">
-                                <i class="fa-solid fa-user fa-2xl mt-2"></i>
+                                <i class="fa-solid fa-users fa-2xl mt-2"></i>
                                 <?php echo $user; ?> User
                             </h4>
                         </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="card-body">
                             <h4 class="d-flex justify-content-between">
-                                <i class="fa-solid fa-user fa-2xl mt-2"></i>
+                                <i class="fa-solid fa-users-gear fa-2xl mt-2"></i>
                                 <?php echo $karyawan; ?> Karyawan
                             </h4>
                         </div>

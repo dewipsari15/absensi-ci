@@ -149,9 +149,10 @@ class M_model extends CI_Model
 
         public function getPerHari($tanggal)
         {
-            $this->db->select('absensi.id, absensi.date, absensi.kegiatan, absensi.id_karyawan, absensi.jam_masuk, absensi.jam_pulang, absensi.keterangan_izin');
             $this->db->from('absensi');
-            $this->db->where('absensi.date', $tanggal); // Menyaring data berdasarkan tanggal
+            $this->db->select('absensi.*, user.username');
+            $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+            $this->db->where('absensi.date', $tanggal);
             $query = $this->db->get();
             return $query->result_array();
         }
@@ -188,6 +189,21 @@ class M_model extends CI_Model
 
         public function get_karyawan_rows() {
             return $this->db->get_where('user', array('role' => 'karyawan'))->num_rows();
-        }        
+        }
+        
+        public function get_data_by_role($role)
+        {
+            $this->db->where('role', $role);
+            return $this->db->get('user');
+        }
+
+        public function getDataAbsensi()
+        {
+            // Ganti 'absensi' dengan tabel yang sesuai dalam database Anda
+            $this->db->select('absensi.*, user.username');
+            $this->db->from('absensi');
+            $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+            return $this->db->get()->result();
+        }
     }
 ?>
