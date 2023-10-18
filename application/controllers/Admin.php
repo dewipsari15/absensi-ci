@@ -45,8 +45,8 @@ class Admin extends CI_Controller {
     }
 
 	public function rekapPerMinggu() {
-		$start_date = $this->input->post('start_date');
-        $end_date = $this->input->post('end_date');
+		$start_date = $this->input->get('start_date');
+        $end_date = $this->input->get('end_date');
 
         if ($start_date && $end_date) {
             $data['perminggu'] = $this->m_model->getRekapPerMinggu($start_date, $end_date);

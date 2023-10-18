@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/profile.css'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -25,8 +26,13 @@
                                     src="<?php echo base_url('assets/images/user/' .$user->image) ?>" alt="">
                                 <div class="small font-italic text-muted">Harus berbentuk jpg/jpeg/png.</div>
                                 <p class="small font-italic text-muted mb-4">Disarankan berukuran 1:1</p>
+                                <hr>
                                 <form action="<?php echo base_url('karyawan/edit_foto'); ?>" method="post"
                                     enctype="multipart/form-data">
+                                    <div class="mb-3 px-5 col-md-12 image-container mt-3">
+                                        <h5>Preview Image :</h5>
+                                        <img class="rounded-circle" id="preview-image" src="#" alt="" width="150" />
+                                    </div>
                                     <label for="image_upload" class="btn btn-primary">
                                         Edit Foto
                                         <input type="file" id="image_upload" name="userfile" style="display: none;">
@@ -102,6 +108,29 @@
 </body>
 
 <script>
+$(document).ready(function() {
+    // Ketika input file berubah
+    $('#image_upload').on('change', function(e) {
+        var fileInput = $(this)[0];
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        // Jika ada file yang dipilih
+        if (file) {
+            reader.onload = function(e) {
+                // Menampilkan pratinjau gambar
+                $('#preview-image').attr('src', e.target.result);
+                $('#preview-container').show();
+            }
+            // Membaca data gambar sebagai URL
+            reader.readAsDataURL(file);
+        } else {
+            // Jika tidak ada file yang dipilih, sembunyikan pratinjau
+            $('#preview-container').hide();
+        }
+    });
+});
+
 function togglePassword(inputId) {
     var x = document.getElementById(inputId);
     var icon = document.getElementById("icon-" + inputId);
