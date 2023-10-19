@@ -53,10 +53,10 @@ class Auth extends CI_Controller {
 		$this->load->view('auth/register');
 	}
 
-	public function aksi_register() 
+    public function aksi_register()
     { 
         $this->load->library('form_validation'); 
-        
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email'); 
         $this->form_validation->set_rules('username', 'username');
         $this->form_validation->set_rules('password', 'password', 'required|min_length[8]');
@@ -65,40 +65,47 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('nama_belakang', 'nama_belakang');
         $this->form_validation->set_rules('image', 'image');
 
-        $email = $this->input->post('email', true);
-        $username = $this->input->post('username', true);
-        $password = md5($this->input->post('password', true));
-        $role = $this->input->post('role', true);
-        $nama_depan = $this->input->post('nama_depan', true);
-        $nama_belakang = $this->input->post('nama_belakang', true);
-        $image = $this->input->post('image', true);
+        // Menjalankan validasi
+        if ($this->form_validation->run() == false) {
+            // Jika validasi gagal, tampilkan kembali formulir dengan pesan kesalahan
+            $this->load->view('auth/register'); // Ganti ini dengan view yang sesuai
+            $this->session->set_flashdata('register_gagal', 'Password minimal 8 huruf.');
+        } else {
+            $email = $this->input->post('email', true);
+            $username = $this->input->post('username', true);
+            $password = md5($this->input->post('password', true));
+            $role = $this->input->post('role', true);
+            $nama_depan = $this->input->post('nama_depan', true);
+            $nama_belakang = $this->input->post('nama_belakang', true);
+            $image = $this->input->post('image', true);
 
-        // Membuat array data
-        $data = [
-            'email' => $email,
-            'username' => $username,
-            'password' => $password,
-            'role' => 'karyawan',
-            'nama_depan' => $nama_depan,
-            'nama_belakang' => $nama_belakang,
-            'image' => 'User.png'
-        ];
+            // Membuat array data
+            $data = [
+                'email' => $email,
+                'username' => $username,
+                'password' => $password,
+                'role' => 'karyawan',
+                'nama_depan' => $nama_depan,
+                'nama_belakang' => $nama_belakang,
+                'image' => 'User.png'
+            ];
 
-        $this->db->insert('user', $data);
-        $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
-        redirect('auth');
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
+            redirect('auth');
+        }
     }
-
+    
     // register admin
     public function register_admin()
 	{
-		$this->load->view('auth/register_admin');
+        $this->load->view('auth/register_admin');
 	}
-
-    public function aksi_register_admin() 
+    
+    public function aksi_register_admin()
     { 
         $this->load->library('form_validation'); 
-        
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email'); 
         $this->form_validation->set_rules('username', 'username');
         $this->form_validation->set_rules('password', 'password', 'required|min_length[8]');
@@ -107,30 +114,37 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('nama_belakang', 'nama_belakang');
         $this->form_validation->set_rules('image', 'image');
 
-        $email = $this->input->post('email', true);
-        $username = $this->input->post('username', true);
-        $password = md5($this->input->post('password', true));
-        $role = $this->input->post('role', true);
-        $nama_depan = $this->input->post('nama_depan', true);
-        $nama_belakang = $this->input->post('nama_belakang', true);
-        $image = $this->input->post('image', true);
+        // Menjalankan validasi
+        if ($this->form_validation->run() == false) {
+            // Jika validasi gagal, tampilkan kembali formulir dengan pesan kesalahan
+            $this->load->view('auth/register_admin'); // Ganti ini dengan view yang sesuai
+            $this->session->set_flashdata('register_gagal', 'Password minimal 8 huruf.');
+        } else {
+            $email = $this->input->post('email', true);
+            $username = $this->input->post('username', true);
+            $password = md5($this->input->post('password', true));
+            $role = $this->input->post('role', true);
+            $nama_depan = $this->input->post('nama_depan', true);
+            $nama_belakang = $this->input->post('nama_belakang', true);
+            $image = $this->input->post('image', true);
 
-        // Membuat array data
-        $data = [
-            'email' => $email,
-            'username' => $username,
-            'password' => $password,
-            'role' => 'admin',
-            'nama_depan' => $nama_depan,
-            'nama_belakang' => $nama_belakang,
-            'image' => 'User.png'
-        ];
+            // Membuat array data
+            $data = [
+                'email' => $email,
+                'username' => $username,
+                'password' => $password,
+                'role' => 'admin',
+                'nama_depan' => $nama_depan,
+                'nama_belakang' => $nama_belakang,
+                'image' => 'User.png'
+            ];
 
-        $this->db->insert('user', $data);
-        $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
-        redirect('auth');
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('register_success', 'Registrasi berhasil. Silakan login.');
+            redirect('auth');
+        }
     }
-
+    
 	// logout
 	function logout()
     {

@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/auth.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -91,5 +92,16 @@ passwordToggle.addEventListener('click', function() {
     }
 });
 </script>
+
+<?php if($this->session->flashdata('register_gagal')){ ?>
+<script>
+Swal.fire({
+    title: 'Register Gagal',
+    text: '<?php echo $this->session->flashdata('register_gagal'); ?>',
+    icon: 'error',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php } ?>
 
 </html>
