@@ -22,7 +22,7 @@ class Auth extends CI_Controller {
         $query = $this->m_model->getwhere('user', $data);
         $result = $query->row_array();
 
-        if (!empty($result) || md5($password) === $result['password']) {
+        if (!empty($result) && md5($password) === $result['password']) {
             $data = [
                 'logged_in' => true,
                 'email' => $result['email'],
@@ -42,7 +42,7 @@ class Auth extends CI_Controller {
                 redirect(base_url() . 'auth');
             }
         } else {
-            $this->session->set_flashdata('gagal_login_i', 'Akun atau Password anda kosong!');
+            $this->session->set_flashdata('gagal_login_i', 'Silahkan periksa email dan password anda.');
             redirect(base_url() . 'auth');
         }
     }
