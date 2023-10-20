@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <form action="<?= base_url('admin/rekapPerBulan'); ?>" method="get">
                         <div class="d-flex justify-content-between">
-                            <select class="form-control" id="bulan" name="bulan">
+                            <select class="form-control m-2" id="bulan" name="bulan">
                                 <option>Pilih Bulan</option>
                                 <option value="1"
                                     <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '1') echo 'selected'; ?>>Januari
@@ -58,9 +58,9 @@
                                     <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '12') echo 'selected'; ?>>
                                     Desember</option>
                             </select>
-                            <button type="submit" name="submit" class="btn btn-sm btn-primary"
+                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
                                 formaction="<?php echo base_url('admin/export_bulanan')?>">Export</button>
-                            <button type="submit" class="btn btn-success">Filter</button>
                         </div>
                     </form>
                     <br>
@@ -85,17 +85,20 @@
                             </thead>
                             <tbody>
                                 <?php $data_found = false; ?>
+                                <?php $no = 1; ?>
                                 <?php foreach ($rekap_harian as $rekap_harian): ?>
                                 <?php if (date('n', strtotime($rekap_harian['date'])) == $data['bulan']): ?>
                                 <?php $data_found = true; ?>
                                 <tr>
-                                    <td><?= $rekap_harian['id']; ?></td>
-                                    <td><?= $rekap_harian['date']; ?></td>
+                                    <td><?= $no; ?></td>
+                                    <td><?= nama_karyawan($rekap_harian['id_karyawan']); ?></td>
+                                    <td><?= convDate($rekap_harian['date']); ?></td>
                                     <td><?= $rekap_harian['kegiatan']; ?></td>
                                     <td><?= $rekap_harian['jam_masuk']; ?></td>
                                     <td><?= $rekap_harian['jam_pulang']; ?></td>
                                     <td><?= $rekap_harian['keterangan_izin']; ?></td>
                                 </tr>
+                                <?php $no++; ?>
                                 <?php endif; ?>
                                 <?php endforeach; ?>
                                 <?php if (!$data_found): ?>

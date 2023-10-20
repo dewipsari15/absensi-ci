@@ -73,12 +73,21 @@
                                                 value="<?php echo $user->nama_belakang ?>" name="nama_belakang">
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="password">Password Lama</label>
+                                        <div class="input-group">
+                                            <input class="form-control" id="password_lama" type="password"
+                                                placeholder="Masukan Password Lama" name="password_lama">
+                                            <span class="input-group-text" onclick="togglePassword('password_lama')"><i
+                                                    id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                        </div>
+                                    </div>
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="password">Password Baru</label>
                                             <div class="input-group">
                                                 <input class="form-control" id="password" type="password"
-                                                    placeholder="Masukan password baru" name="password_baru">
+                                                    placeholder="Password baru" name="password_baru">
                                                 <span class="input-group-text" onclick="togglePassword('password')"><i
                                                         id="icon-password" class="fas fa-eye"></i></span>
                                             </div>
@@ -176,6 +185,18 @@ Swal.fire({
 Swal.fire({
     title: "Error!",
     text: "<?php echo $this->session->flashdata('error_profile'); ?>",
+    icon: "error",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('kesalahan_password_lama')){ ?>
+<script>
+Swal.fire({
+    title: "Error!",
+    text: "<?php echo $this->session->flashdata('kesalahan_password_lama'); ?>",
     icon: "error",
     showConfirmButton: false,
     timer: 1500

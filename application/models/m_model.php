@@ -122,6 +122,20 @@ class M_model extends CI_Model
             return null; // Kembalikan null jika data tidak ditemukan
         }
 
+        public function getPasswordById($id)
+        {
+            $this->db->select('password');
+            $this->db->where('id', $id);
+            $query = $this->db->get('user');
+
+            if ($query->num_rows() == 1) {
+                $row = $query->row();
+                return $row->password;
+            } else {
+                return false;
+            }
+        }
+
         public function cek_absen($id_karyawan, $tanggal) {
             $this->db->where('id_karyawan', $id_karyawan);
             $this->db->where('date', $tanggal);

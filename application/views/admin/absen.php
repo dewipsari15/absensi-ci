@@ -15,8 +15,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Daftar Absen Karyawan</h5>
-                    <a href="<?php echo base_url('admin/export_absen'); ?>" class="btn btn-sm btn-primary"><i
-                            class="fa fa-download m-1"></i>Export</a>
+                    <a href="<?php echo base_url('admin/export_absen'); ?>" class="btn btn-sm btn-primary">Export</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -24,6 +23,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Masuk</th>
@@ -35,8 +35,9 @@
                                 <?php $no=0;foreach($absensi as $row): $no++ ?>
                                 <tr>
                                     <td><?php echo $no ?></td>
+                                    <td><?php echo nama_karyawan($row->id_karyawan) ?></td>
                                     <td><?php echo $row->kegiatan ?></td>
-                                    <td><?php echo $row->date ?></td>
+                                    <td><?php echo convDate($row->date) ?></td>
                                     <td><?php echo $row->jam_masuk ?></td>
                                     <td><?php echo $row->jam_pulang ?></td>
                                     <td><?php echo $row->keterangan_izin ?></td>

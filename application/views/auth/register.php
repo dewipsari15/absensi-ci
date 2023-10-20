@@ -41,6 +41,14 @@
                         enctype="multipart/form-data">
                         <div class="input-boxes">
                             <div class="input-box">
+                                <i class="fas fa-hashtag"></i>
+                                <input type="text" placeholder="Enter your first name" name="nama_depan" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-hashtag"></i>
+                                <input type="text" placeholder="Enter your last name" name="nama_belakang" required>
+                            </div>
+                            <div class="input-box">
                                 <i class="fas fa-envelope"></i>
                                 <input type="text" placeholder="Enter your email" name="email" required>
                             </div>
@@ -50,19 +58,11 @@
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-lock" id="password-toggle"></i>
-                                <input type="password" placeholder="Enter your password" name="pasaword" id="password"
+                                <input type="password" placeholder="Enter your password" name="password" id="password"
                                     required>
                             </div>
-                            <div class="input-box">
-                                <i class="fas fa-hashtag"></i>
-                                <input type="text" placeholder="Enter your first name" name="nama_depan" required>
-                            </div>
-                            <div class="input-box">
-                                <i class="fas fa-hashtag"></i>
-                                <input type="text" placeholder="Enter your last name" name="nama_belakang" required>
-                            </div>
                             <div class="button input-box">
-                                <input type="submit" value="Sumbit">
+                                <input type="submit" value="submit">
                             </div>
                             <div class="text sign-up-text">Anda sudah memiliki akun? <a
                                     href="<?php echo base_url('auth'); ?>">Login sekarang</a></div>
@@ -98,6 +98,17 @@ passwordToggle.addEventListener('click', function() {
 Swal.fire({
     title: 'Register Gagal',
     text: '<?php echo $this->session->flashdata('register_gagal'); ?>',
+    icon: 'error',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php } ?>
+
+<?php if($this->session->flashdata('error')){ ?>
+<script>
+Swal.fire({
+    title: 'Register Gagal',
+    text: '<?php echo $this->session->flashdata('error'); ?>',
     icon: 'error',
     confirmButtonText: 'OK'
 });

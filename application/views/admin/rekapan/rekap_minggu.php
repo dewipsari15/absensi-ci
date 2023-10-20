@@ -19,19 +19,15 @@
                 <div class="card-body">
                     <form action="<?= base_url('admin/rekapPerMinggu'); ?>" method="get">
                         <div class="d-flex justify-content-between">
-                            <div class="input-group">
+                            <div class="input-group m-2">
                                 <span class="input-group-text">Tanggal awal</span>
                                 <input type="date" class="form-control" id="start_date" name="start_date"
                                     value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
                             </div>
-                            <div class="input-group">
-                                <span class="input-group-text">Tanggal akhir</span>
-                                <input type="date" class="form-control" id="end_date" name="end_date"
-                                    value="<?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>">
-                            </div>
-                            <button type="submit" name="submit" class="btn btn-sm btn-primary"
+                            <?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>
+                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
                                 formaction="<?php echo base_url('admin/export_mingguan')?>">Export</button>
-                            <button type="submit" class="btn btn-success">Filter</button>
                         </div>
                     </form>
                     <br>
@@ -46,6 +42,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">N</th>
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Masuk</th>
@@ -57,7 +54,8 @@
                                 <?php $no=0; foreach ($perminggu as $rekap): $no++; ?>
                                 <tr>
                                     <td><?= $no; ?></td>
-                                    <td><?= $rekap->date; ?></td>
+                                    <td><?= nama_karyawan($rekap->id_karyawan) ?></td>
+                                    <td><?= convDate($rekap->date); ?></td>
                                     <td><?= $rekap->kegiatan; ?></td>
                                     <td><?= $rekap->jam_masuk; ?></td>
                                     <td><?= $rekap->jam_pulang; ?></td>

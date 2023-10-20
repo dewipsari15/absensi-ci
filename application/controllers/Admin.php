@@ -9,6 +9,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_model');
         $this->load->library('form_validation');
+        $this->load->helper('my_helper');
         if($this->session->userdata('logged_in')!=true || $this->session->userdata('role') != 'admin') {
             redirect(base_url().'auth');
         }
@@ -45,17 +46,17 @@ class Admin extends CI_Controller {
     }
 
 	public function rekapPerMinggu() {
-		$start_date = $this->input->get('start_date');
+        $start_date = $this->input->get('start_date');
         $end_date = $this->input->get('end_date');
 
-        if ($start_date && $end_date) {
+        if ($start_date) {
+            $end_date = date('Y-m-d', strtotime($start_date. ' + 7 days'));
             $data['perminggu'] = $this->m_model->getRekapPerMinggu($start_date, $end_date);
         } else {
             $data['perminggu'] = []; // Atau lakukan sesuai dengan kebutuhan logika Anda jika tanggal tidak ada
         }
 
-		$this->load->view('admin/rekapan/rekap_minggu', $data);
-		// $data['absensi'] = $this->m_model->getPerMinggu();        
+        $this->load->view('admin/rekapan/rekap_minggu', $data);     
     }
 	
 	public function rekapPerBulan() {
@@ -73,6 +74,7 @@ class Admin extends CI_Controller {
 
 	public function edit_profile()
 	{
+        $password_lama = $this->input->post('password_lama');
 		$password_baru = $this->input->post('password_baru');
 		$konfirmasi_password = $this->input->post('konfirmasi_password');
 		$email = $this->input->post('email');
@@ -87,15 +89,21 @@ class Admin extends CI_Controller {
 			'nama_belakang' => $nama_belakang,
 		);
 
-		if (!empty($password_baru)) {
-			if ($password_baru === $konfirmasi_password) {
-				$data['password'] = md5($password_baru);
-				$this->session->set_flashdata('ubah_password', 'Berhasil mengubah password');
-			} else {
-				$this->session->set_flashdata('kesalahan_password', 'Password baru dan Konfirmasi password tidak sama');
-				redirect(base_url('admin/profile'));
-			}
-		}
+        $stored_password = $this->m_model->getPasswordById($this->session->userdata('id')); // Ganti dengan metode sesuai dengan struktur database Anda
+        if (md5($password_lama) != $stored_password) {
+            $this->session->set_flashdata('kesalahan_password_lama', 'Password lama yang dimasukkan salah');
+            redirect(base_url('admin/profile'));
+        } else {
+            if (!empty($password_baru)) {
+                if ($password_baru === $konfirmasi_password) {
+                    $data['password'] = md5($password_baru);
+                    $this->session->set_flashdata('ubah_password', 'Berhasil mengubah password');
+                } else {
+                    $this->session->set_flashdata('kesalahan_password', 'Password baru dan Konfirmasi password tidak sama');
+                    redirect(base_url('admin/profile'));
+                }
+            }
+        }
 
 		$this->session->set_userdata($data);
 		$update_result = $this->m_model->update_data('user', $data, array('id' => $this->session->userdata('id')));
@@ -543,10 +551,15 @@ class Admin extends CI_Controller {
 
 	public function export_mingguan()
     {
-        $raw_start_date = $this->input->get('start_date');
-        $raw_end_date = $this->input->get('end_date');
-        $start_date = date('Y-m-d', strtotime($raw_start_date));
-        $end_date = date('Y-m-d', strtotime($raw_end_date));
+        $start_date = $this->input->get('start_date');
+        $end_date = $this->input->get('end_date');
+        
+        if ($start_date) {
+            $end_date = date('Y-m-d', strtotime($start_date . ' + 7 days'));
+            $data['perminggu'] = $this->m_model->getRekapPerMinggu($start_date, $end_date);
+        } else {
+            $data['perminggu'] = []; // Atau lakukan sesuai dengan kebutuhan logika Anda jika tanggal tidak ada
+        }
     
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

@@ -39,7 +39,7 @@
                                 <tr>
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->kegiatan ?></td>
-                                    <td><?php echo $row->date ?></td>
+                                    <td><?php echo convDate($row->date) ?></td>
                                     <td><?php echo $row->jam_masuk ?></td>
                                     <td><?php echo $row->jam_pulang ?></td>
                                     <td><?php echo $row->keterangan_izin ?></td>
@@ -59,12 +59,12 @@
                                         <div class="d-flex flex-column flex-md-row justify-content-between">
                                             <?php if ($row->keterangan_izin == 'masuk'): ?>
                                             <a href="<?php echo base_url('karyawan/update_absen/'). $row->id; ?>"
-                                                class="btn btn-sm btn-success mb-2 mb-md-0 mr-md-2">
+                                                class="btn btn-sm btn-primary mb-2 mb-md-0 mr-md-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <?php else: ?>
                                             <a href="<?php echo base_url('karyawan/update_izin/'). $row->id; ?>"
-                                                class="btn btn-sm btn-success mb-2 mb-md-0 mr-md-2">
+                                                class="btn btn-sm btn-primary mb-2 mb-md-0 mr-md-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <?php endif; ?>

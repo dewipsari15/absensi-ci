@@ -75,7 +75,7 @@
                                 <tr>
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->kegiatan ?></td>
-                                    <td><?php echo $row->date ?></td>
+                                    <td><?php echo convDate($row->date) ?></td>
                                     <td><?php echo $row->jam_masuk ?></td>
                                     <td><?php echo $row->jam_pulang ?></td>
                                     <td><?php echo $row->keterangan_izin ?></td>

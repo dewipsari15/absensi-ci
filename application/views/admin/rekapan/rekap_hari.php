@@ -19,11 +19,11 @@
                 <div class="card-body">
                     <form action="<?= base_url('admin/rekapPerHari'); ?>" method="get">
                         <div class="d-flex justify-content-between">
-                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                            <input type="date" class="form-control m-2" id="tanggal" name="tanggal"
                                 value="<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : ''; ?>">
-                            <button type="submit" name="submit" class="btn btn-sm btn-primary"
+                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
                                 formaction="<?php echo base_url('admin/export_harian')?>">Export</button>
-                            <button type="submit" class="btn btn-success">Filter</button>
                         </div>
                     </form>
                     <br>
@@ -35,6 +35,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Masuk</th>
@@ -46,7 +47,8 @@
                                 <?php $no=0;foreach ($perhari as $rekap): $no++ ?>
                                 <tr>
                                     <td><?= $no; ?></td>
-                                    <td><?= $rekap->date; ?></td>
+                                    <td><?php echo nama_karyawan($rekap->id_karyawan) ?></td>
+                                    <td><?= convDate($rekap->date); ?></td>
                                     <td><?= $rekap->kegiatan; ?></td>
                                     <td><?= $rekap->jam_masuk; ?></td>
                                     <td><?= $rekap->jam_pulang; ?></td>

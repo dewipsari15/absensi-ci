@@ -9,19 +9,6 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="header-content-div">
-            <a href="">
-                <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/digides_absensi.svg"
-                    alt="Company Logo" id="header-img" /></a>
-            <nav id="nav-bar">
-                <a href="" class="nav-link">ABOUT</a>
-                <a href="" class="nav-link">VARIETIES</a>
-                <a href="" class="nav-link">OUR SERVICE</a>
-                <a href="" class="nav-link">BENEFITS</a>
-            </nav>
-        </div>
-    </header>
     <main>
         <section id="home-sec" class="flexible home-sec">
             <div class="eye-grabber-img">
