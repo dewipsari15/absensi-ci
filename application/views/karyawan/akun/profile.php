@@ -74,32 +74,38 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="small mb-1" for="password">Password Lama</label>
+                                        <label class="small mb-1" for="password_lama">Password Lama</label>
                                         <div class="input-group">
                                             <input class="form-control" id="password_lama" type="password"
                                                 placeholder="Masukan Password Lama" name="password_lama">
-                                            <span class="input-group-text" onclick="togglePassword('password_lama')"><i
-                                                    id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                            <span class="input-group-text"
+                                                onclick="togglePassword('password_lama', 'icon-password_lama')">
+                                                <i id="icon-password_lama" class="fas fa-eye-slash"></i>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="password">Password Baru</label>
+                                            <label class="small mb-1" for="password_baru">Password Baru</label>
                                             <div class="input-group">
-                                                <input class="form-control" id="password" type="password"
+                                                <input class="form-control" id="password_baru" type="password"
                                                     placeholder="Password baru" name="password_baru">
-                                                <span class="input-group-text" onclick="togglePassword('password')"><i
-                                                        id="icon-password" class="fas fa-eye"></i></span>
+                                                <span class="input-group-text"
+                                                    onclick="togglePassword('password_baru', 'icon-password_baru')">
+                                                    <i id="icon-password_baru" class="fas fa-eye-slash"></i>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="password">Konfirmasi Password</label>
+                                            <label class="small mb-1" for="konfirmasi_password">Konfirmasi
+                                                Password</label>
                                             <div class="input-group">
                                                 <input class="form-control" id="konfirmasi_password" type="password"
                                                     placeholder="Konfirmasi password" name="konfirmasi_password">
                                                 <span class="input-group-text"
-                                                    onclick="togglePassword('konfirmasi_password')"><i
-                                                        id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                                    onclick="togglePassword('konfirmasi_password', 'icon-konfirmasi_password')">
+                                                    <i id="icon-konfirmasi_password" class="fas fa-eye-slash"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -140,18 +146,18 @@ $(document).ready(function() {
     });
 });
 
-function togglePassword(inputId) {
+function togglePassword(inputId, iconId) {
     var x = document.getElementById(inputId);
-    var icon = document.getElementById("icon-" + inputId);
+    var icon = document.getElementById(iconId);
 
     if (x.type === "password") {
         x.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        x.type = "password";
         icon.classList.remove("fa-eye-slash");
         icon.classList.add("fa-eye");
+    } else {
+        x.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
     }
 }
 </script>
