@@ -30,18 +30,28 @@
                         class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fa-solid fa-address-card fa-lg me-3"></i><span>Absen</span>
                     </a>
-                    <a href="<?php echo base_url('admin/rekapPerHari') ?>"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-calendar-day fa-lg me-3"></i><span>Rekap Harian</span>
+                    <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true"
+                        data-mdb-toggle="collapse" href="#collapseExample1" aria-expanded="true"
+                        aria-controls="collapseExample1">
+                        <i class="fas fa-square-caret-down fa-lg me-3"></i><span>Rekapan</span>
                     </a>
-                    <a href="<?php echo base_url('admin/rekapPerMinggu') ?>"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-solid fa-calendar-week fa-lg me-3"></i><span>Rekap Mingguan</span>
-                    </a>
-                    <a href="<?php echo base_url('admin/rekapPerBulan') ?>"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fa-regular fa-calendar fa-lg me-3"></i><span>Rekap Bulanan</span>
-                    </a>
+                    <ul id="collapseExample1" class="collapse list-group list-group-flush">
+                        <li class="list-group-item py-1">
+                            <a href="" class="text-reset ms-4">
+                                <i class="fa-solid fa-calendar-day fa-lg me-3"></i><span>Harian</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item py-1">
+                            <a href="" class="text-reset ms-4">
+                                <i class="fa-solid fa-calendar-week fa-lg me-3"></i><span>Mingguan</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item py-1">
+                            <a href="" class="text-reset ms-4">
+                                <i class="fa-regular fa-calendar fa-lg me-3"></i><span>Bulanan</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

@@ -21,7 +21,7 @@
                 <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/kecepatan.svg" alt="">
                 <div class="text">
                     <span class="text-1">Selamat Datang Di <br> Absensi App</span>
-                    <span class="text-2">Silahkan Registrasi</span>
+                    <span class="text-2">Silahkan Registrasi sebagai admin</span>
                 </div>
             </div>
             <div class="back">
@@ -36,7 +36,7 @@
         <div class="forms">
             <div class="form-content">
                 <div class="signup-form">
-                    <div class="title">Register</div>
+                    <div class="title">Register Admin</div>
                     <form action="<?php echo base_url('auth/aksi_register_admin'); ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="input-boxes">
