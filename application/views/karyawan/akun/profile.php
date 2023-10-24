@@ -34,10 +34,11 @@
                                         <img class="rounded-circle" id="preview-image" src="#" alt="" width="150" />
                                     </div>
                                     <label for="image_upload" class="btn btn-primary">
-                                        Edit Foto
+                                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         <input type="file" id="image_upload" name="userfile" style="display: none;">
                                     </label>
-                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                    <button type="submit" class="btn btn-success"><i
+                                            class="fa-regular fa-floppy-disk fa-xl"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -110,7 +111,8 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-success" type="submit">Simpan Perubahan</button>
+                                    <button class="btn btn-success" type="submit"><i
+                                            class="fa-regular fa-floppy-disk fa-xl"></i></button>
                                 </form>
                             </div>
                         </div>

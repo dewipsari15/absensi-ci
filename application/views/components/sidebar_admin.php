@@ -33,21 +33,21 @@
                     <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true"
                         data-mdb-toggle="collapse" href="#collapseExample1" aria-expanded="true"
                         aria-controls="collapseExample1">
-                        <i class="fas fa-square-caret-down fa-lg me-3"></i><span>Rekapan</span>
+                        <i class="fas fa-circle-chevron-down fa-lg me-3"></i><span>Rekapan</span>
                     </a>
-                    <ul id="collapseExample1" class="collapse list-group list-group-flush">
-                        <li class="list-group-item py-1">
-                            <a href="" class="text-reset ms-4">
+                    <ul id="collapseExample1" class="collapse list-group list-group-flush ms-1">
+                        <li class="list-group-item">
+                            <a href="<?php echo base_url('admin/rekapPerHari') ?>" class="text-reset ms-4">
                                 <i class="fa-solid fa-calendar-day fa-lg me-3"></i><span>Harian</span>
                             </a>
                         </li>
-                        <li class="list-group-item py-1">
-                            <a href="" class="text-reset ms-4">
+                        <li class="list-group-item">
+                            <a href="<?php echo base_url('admin/rekapPerMinggu') ?>" class="text-reset ms-4">
                                 <i class="fa-solid fa-calendar-week fa-lg me-3"></i><span>Mingguan</span>
                             </a>
                         </li>
-                        <li class="list-group-item py-1">
-                            <a href="" class="text-reset ms-4">
+                        <li class="list-group-item">
+                            <a href="<?php echo base_url('admin/rekapPerBulan') ?>" class="text-reset ms-4">
                                 <i class="fa-regular fa-calendar fa-lg me-3"></i><span>Bulanan</span>
                             </a>
                         </li>
@@ -113,6 +113,19 @@ function logout() {
         }
     });
 }
+
+const dropdownToggle = document.querySelector('[data-mdb-toggle="collapse"]');
+
+dropdownToggle.addEventListener('click', function() {
+    const icon = dropdownToggle.querySelector('i');
+    if (icon.classList.contains('fa-circle-chevron-down')) {
+        icon.classList.remove('fa-circle-chevron-down');
+        icon.classList.add('fa-circle-chevron-up');
+    } else {
+        icon.classList.remove('fa-circle-chevron-up');
+        icon.classList.add('fa-circle-chevron-down');
+    }
+});
 </script>
 
 </html>

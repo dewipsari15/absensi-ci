@@ -16,8 +16,6 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Histori Absen</h5>
-                    <!-- <a href="<?php echo base_url('karyawan/tambah_absen') ?>"><button type="button"
-                            class="btn btn-success">Success</button></a> -->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

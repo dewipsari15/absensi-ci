@@ -15,16 +15,19 @@ class Admin extends CI_Controller {
         }
 	}
 
+    // Menampilkan halaman utama
 	public function index()
 	{
 		$id_admin = $this->session->userdata('id');
 		$data['absensi'] = $this->m_model->get_data('absensi')->result();
+        $data['employee'] = $this->m_model->get_data('user')->result();
 		$data['user'] = $this->m_model->get_data('user')->num_rows();
 		$data['karyawan'] = $this->m_model->get_karyawan_rows();
 		$data['absensi_num'] = $this->m_model->get_absensi_count();
 		$this->load->view('admin/index', $data);
 	}
 
+    // Menampilkan halaman karyawan
 	public function karyawan()
 	{
 		$id_admin = $this->session->userdata('id');
@@ -32,6 +35,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/karyawan', $data);
 	}
 
+    // Menampilkan halaman absensi
 	public function absen()
 	{
 		$id_admin = $this->session->userdata('id');
@@ -39,12 +43,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/absen', $data);
 	}
 
+    // Menampilkan rekap perhari berdasarkan yang dipilih
 	public function rekapPerHari() {
 		$tanggal = $this->input->get('tanggal');
         $data['perhari'] = $this->m_model->getPerHari($tanggal);
         $this->load->view('admin/rekapan/rekap_hari', $data);
     }
 
+    // Menampilkan rekap perminggu berdasarkan yang dipilih
 	public function rekapPerMinggu() {
         $start_date = $this->input->get('start_date');
         $end_date = $this->input->get('end_date');
@@ -53,25 +59,28 @@ class Admin extends CI_Controller {
             $end_date = date('Y-m-d', strtotime($start_date. ' + 7 days'));
             $data['perminggu'] = $this->m_model->getRekapPerMinggu($start_date, $end_date);
         } else {
-            $data['perminggu'] = []; // Atau lakukan sesuai dengan kebutuhan logika Anda jika tanggal tidak ada
+            $data['perminggu'] = [];
         }
 
         $this->load->view('admin/rekapan/rekap_minggu', $data);     
     }
 	
+    // Menampilkan rekap perbulan berdasarkan yang dipilih
 	public function rekapPerBulan() {
-        $bulan = $this->input->get('bulan'); // Ambil bulan dari parameter GET
+        $bulan = $this->input->get('bulan');
         $data['rekap_bulanan'] = $this->m_model->getRekapPerBulan($bulan);
         $data['rekap_harian'] = $this->m_model->getRekapHarianByBulan($bulan);
         $this->load->view('admin/rekapan/rekap_bulan', $data);
     }
 
+    // Menampilkan halaman profil karyawan
 	public function profile()
 	{
 		$data['akun'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('admin/akun/profile', $data);
 	}
 
+    // Pembaruan profil admin
 	public function edit_profile()
 	{
         $password_lama = $this->input->post('password_lama');
@@ -89,7 +98,7 @@ class Admin extends CI_Controller {
 			'nama_belakang' => $nama_belakang,
 		);
 
-        $stored_password = $this->m_model->getPasswordById($this->session->userdata('id')); // Ganti dengan metode sesuai dengan struktur database Anda
+        $stored_password = $this->m_model->getPasswordById($this->session->userdata('id'));
         if (md5($password_lama) != $stored_password) {
             $this->session->set_flashdata('kesalahan_password_lama', 'Password lama yang dimasukkan salah');
             redirect(base_url('admin/profile'));
@@ -117,10 +126,11 @@ class Admin extends CI_Controller {
 		}
 	}
 
+    //  Pembaruan foto profil admin
 	public function edit_foto() {
-		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
-		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
-		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
+		$config['upload_path'] = './assets/images/user/';
+		$config['allowed_types'] = 'jpg|jpeg|png';
+		$config['max_size'] = 5120;
 	
 		$this->load->library('upload', $config);
 	
@@ -128,29 +138,25 @@ class Admin extends CI_Controller {
 			$upload_data = $this->upload->data();
 			$file_name = $upload_data['file_name'];
 	
-			// Update nama file gambar baru ke dalam database untuk user yang sesuai
-			$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
-			$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
+			$user_id = $this->session->userdata('id');
+			$current_image = $this->m_model->get_current_image($user_id);
 	
 			if ($current_image !== 'User.png') {
-				// Hapus gambar saat ini jika bukan 'User.png'
 				unlink('./assets/images/user/' . $current_image);
 			}
 	
-			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
+			$this->m_model->update_image($user_id, $file_name);
 			$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
 
-	
-			// Redirect atau tampilkan pesan keberhasilan
-			redirect('admin/profile'); // Gantilah dengan halaman yang sesuai
+			redirect('admin/profile');
 		} else {
 			$error = array('error' => $this->upload->display_errors());
 			$this->session->set_flashdata('error_profile', $error['error']);
 			redirect('admin/profile');
-			// Tangani kesalahan unggah gambar
 		}
 	}
 
+    // Untuk mengexport data karyawan
 	public function export_karyawan()
     {
         $spreadsheet = new Spreadsheet();
@@ -277,6 +283,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
     }
 
+    // Untuk mengexport semua data absen
 	public function export_absen()
     {
         $spreadsheet = new Spreadsheet();
@@ -336,7 +343,7 @@ class Admin extends CI_Controller {
             ],
         ];
 
-        $sheet->setCellValue('A1', 'Daftar Absen Karyawan');
+        $sheet->setCellValue('A1', 'Absen Karyawan');
         $sheet->mergeCells('A1:G1');
         $sheet
             ->getStyle('A1')
@@ -365,7 +372,7 @@ class Admin extends CI_Controller {
         $numrow = 4;
         foreach ($data as $data) {
             $sheet->setCellValue('A' . $numrow, $no);
-            $sheet->setCellValue('B' . $numrow, $data->username);
+            $sheet->setCellValue('B' . $numrow, $data->nama_depan . ' ' . $data->nama_belakang);
             $sheet->setCellValue('C' . $numrow, $data->kegiatan);
             $sheet->setCellValue('D' . $numrow, $data->date);
             $sheet->setCellValue('E' . $numrow, $data->jam_masuk);
@@ -400,18 +407,19 @@ class Admin extends CI_Controller {
                 \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE
             );
 
-        $sheet->setTitle('Daftar Absen Karyawan');
+        $sheet->setTitle('Absen Karyawan');
 
         header(
             'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         );
-        header('Content-Disposition: attachment; filename="Daftar Absen Karyawan.xlsx"');
+        header('Content-Disposition: attachment; filename="Absen Karyawan.xlsx"');
         header('Cache-Control: max-age=0');
 
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     }
 
+    // Untuk mengexport data per hari
 	public function export_harian()
     {
 		$tanggal = $this->input->get('tanggal');
@@ -502,7 +510,7 @@ class Admin extends CI_Controller {
         $numrow = 4;
         foreach ($harian as $data) {
             $sheet->setCellValue('A' . $numrow, $no);
-            $sheet->setCellValue('B' . $numrow, $data->username);
+            $sheet->setCellValue('B' . $numrow, $data->nama_depan . ' ' . $data->nama_belakang);
             $sheet->setCellValue('C' . $numrow, $data->kegiatan);
             $sheet->setCellValue('D' . $numrow, $data->date);
             $sheet->setCellValue('E' . $numrow, $data->jam_masuk);
@@ -549,6 +557,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
     }
 
+    // Untuk mengexport data per minggu
 	public function export_mingguan()
     {
         $start_date = $this->input->get('start_date');
@@ -647,7 +656,7 @@ class Admin extends CI_Controller {
         $numrow = 4;
         foreach ($data as $row) {
             $sheet->setCellValue('A' . $numrow, $no);
-            $sheet->setCellValue('B' . $numrow, $row->username);
+            $sheet->setCellValue('B' . $numrow, $row->nama_depan . ' ' . $data->nama_belakang);
             $sheet->setCellValue('C' . $numrow, $row->kegiatan);
             $sheet->setCellValue('D' . $numrow, $row->date);
             $sheet->setCellValue('E' . $numrow, $row->jam_masuk);
@@ -694,6 +703,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
     }
 
+    // Untuk mengexport data per bulanan
     public function export_bulanan()
     {
         $bulan = $this->input->get('bulan');
@@ -785,7 +795,7 @@ class Admin extends CI_Controller {
         $numrow = 4;
         foreach ($bulanan as $data) {
             $sheet->setCellValue('A' . $numrow, $no);
-			$sheet->setCellValue('B' . $numrow, $data->username);
+			$sheet->setCellValue('B' . $numrow, $data->nama_depan . ' ' . $data->nama_belakang);
 			$sheet->setCellValue('C' . $numrow, $data->kegiatan);
 			$sheet->setCellValue('D' . $numrow, $data->date);
 			$sheet->setCellValue('E' . $numrow, $data->jam_masuk);

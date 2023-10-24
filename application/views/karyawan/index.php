@@ -71,7 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 0; foreach ($absensi as $row) : $no++; if($no > 10) break;?>
+                                <?php $no = 0; foreach ($absensi as $row) : $no++; if($no > 5) break;?>
                                 <tr>
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->kegiatan ?></td>

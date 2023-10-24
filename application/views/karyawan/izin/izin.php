@@ -24,7 +24,6 @@
                             <textarea class="form-control" aria-label="With textarea" name="keterangan_izin"></textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <!-- <button type="submit" class="btn btn-success" name="submit">Absen</button> -->
                             <button type="submit" class="btn btn-success" name="submit">Izin</button>
                         </div>
                     </form>

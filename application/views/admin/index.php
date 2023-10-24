@@ -53,7 +53,45 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>Daftar Karyawan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no=0;foreach($employee as $row): if($row->role == 'karyawan') : $no++; if($no > 3) break; ?>
+                                <tr>
+                                    <td><?php echo $no ?></td>
+                                    <td>
+                                        <img class="img-account-profile rounded-circle mb-2" width="50px"
+                                            src="<?php echo base_url('assets/images/user/' .$row->image) ?>" alt="">
+                                    </td>
+                                    <td><?php echo $row->username ?></td>
+                                    <td><?php echo $row->email ?></td>
+                                </tr>
+                                <?php endif; endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                        <a href="<?php echo base_url('admin/karyawan') ?>" class="btn btn-success"><i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Histori Absen</h5>
                 </div>
@@ -71,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 0; foreach ($absensi as $row) : $no++; if($no > 10) break;?>
+                                <?php $no = 0; foreach ($absensi as $row) : $no++; if($no > 3) break;?>
                                 <tr>
                                     <td><?php echo $no ?></td>
                                     <td><?php echo $row->kegiatan ?></td>

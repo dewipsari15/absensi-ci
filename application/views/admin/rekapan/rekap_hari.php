@@ -21,9 +21,11 @@
                         <div class="d-flex justify-content-between">
                             <input type="date" class="form-control m-2" id="tanggal" name="tanggal"
                                 value="<?php echo isset($_GET['tanggal']) ? $_GET['tanggal'] : ''; ?>">
-                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" class="btn btn-success m-2"><i
+                                    class="fa-regular fa-floppy-disk fa-xl"></i></button>
                             <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
-                                formaction="<?php echo base_url('admin/export_harian')?>">Export</button>
+                                formaction="<?php echo base_url('admin/export_harian')?>"><i
+                                    class="fas fa-download fa-xl"></i></button>
                         </div>
                     </form>
                     <br>
@@ -58,7 +60,7 @@
                             </tbody>
                         </table>
                         <?php else: ?>
-                        <h5 class="text-center">Tidak ada data untuk tanggal ini.</h5>
+                        <h5 class="text-center">Tidak ada data ditanggal ini.</h5>
                         <p class="text-center">Silahkan pilih tanggal lain.</p>
                         <?php endif; ?>
                     </div>

@@ -58,9 +58,11 @@
                                     <?php if(isset($_GET['bulan']) && $_GET['bulan'] == '12') echo 'selected'; ?>>
                                     Desember</option>
                             </select>
-                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" class="btn btn-success m-2"><i
+                                    class="fa-regular fa-floppy-disk fa-xl"></i></button>
                             <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
-                                formaction="<?php echo base_url('admin/export_bulanan')?>">Export</button>
+                                formaction="<?php echo base_url('admin/export_bulanan')?>"><i
+                                    class="fas fa-download fa-xl"></i></button>
                         </div>
                     </form>
                     <br>
@@ -76,6 +78,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Masuk</th>

@@ -11,6 +11,7 @@ class Karyawan extends CI_Controller {
         }
 	}
 
+	// Menampilkan halaman utama
 	public function index()
 	{
 		$id_karyawan = $this->session->userdata('id');
@@ -22,6 +23,7 @@ class Karyawan extends CI_Controller {
 		$this->load->view('karyawan/index', $data);
 	}
 
+	// Menampilkan halaman absensi
 	public function absen()
 	{
 		$id_karyawan = $this->session->userdata('id');
@@ -29,42 +31,45 @@ class Karyawan extends CI_Controller {
 		$this->load->view('karyawan/absensi', $data);
 	}
 
+	// Menampilkan halaman untuk menambahkan data absensi karyawan
 	public function tambah_absen()
 	{
 		$this->load->view('karyawan/absen/tambah_absen');
 	}
 	
+	// Menampilkan halaman untuk memperbarui data absensi karyawan berdasarkan ID
 	public function update_absen($id)
 	{
 		$data['absensi']=$this->m_model->get_by_id('absensi', 'id', $id)->result();
 		$this->load->view('karyawan/absen/update_absen', $data);
 	}
 	
+	// Menampilkan halaman untuk mengelola izin karyawan
 	public function izin()
 	{
 		$this->load->view('karyawan/izin/izin');
 	}
 
+	// Menampilkan halaman untuk memperbarui status izin karyawan berdasarkan ID
 	public function update_izin($id)
 	{
 		$data['absensi']=$this->m_model->get_by_id('absensi', 'id', $id)->result();
 		$this->load->view('karyawan/izin/update_izin', $data);
 	}
 
+	// Menampilkan halaman profil karyawan
 	public function profile()
 	{
 		$data['akun'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('karyawan/akun/profile', $data);
 	}
 	
+	// Aksi penambahan data absensi karyawan
 	public function aksi_tambah_absen() {
 		$id_karyawan = $this->session->userdata('id');
-		$tanggal_sekarang = date('Y-m-d'); // Mendapatkan tanggal hari ini
+		$tanggal_sekarang = date('Y-m-d');
 	
-		// Cek apakah sudah melakukan absen hari ini
 		$is_already_absent = $this->m_model->cek_absen($id_karyawan, $tanggal_sekarang);
-	
-		// Cek apakah sudah melakukan izin hari ini
 		$is_already_izin = $this->m_model->cek_izin($id_karyawan, $tanggal_sekarang);
 	
 		if ($is_already_absent) {
@@ -77,8 +82,8 @@ class Karyawan extends CI_Controller {
 				'kegiatan' => $this->input->post('kegiatan'),
 				'status' => 'false',
 				'keterangan_izin' => 'masuk',
-				'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
-				'date' => $tanggal_sekarang, // Menyimpan tanggal absen
+				'jam_pulang' => '00:00:00',
+				'date' => $tanggal_sekarang,
 			];
 			$this->m_model->tambah_data('absensi', $data);
 			$this->session->set_flashdata('berhasil_absen', 'Berhasil Absen.');
@@ -87,6 +92,7 @@ class Karyawan extends CI_Controller {
 		redirect(base_url('karyawan/absen'));
 	}
 	
+	// Aksi pembaruan data absensi karyawan
 	public function aksi_update_absen()
     {
         $id_karyawan = $this->session->userdata('id');
@@ -106,14 +112,12 @@ class Karyawan extends CI_Controller {
         }
     }
 
+	// Aksi izin yang diajukan oleh karyawan
 	public function aksi_izin() {
 		$id_karyawan = $this->session->userdata('id');
-		$tanggal_sekarang = date('Y-m-d'); // Mendapatkan tanggal hari ini
+		$tanggal_sekarang = date('Y-m-d');
 	
-		// Cek apakah sudah melakukan absen hari ini
 		$is_already_absent = $this->m_model->cek_absen($id_karyawan, $tanggal_sekarang);
-	
-		// Cek apakah sudah melakukan izin hari ini
 		$is_already_izin = $this->m_model->cek_izin($id_karyawan, $tanggal_sekarang);
 	
 		if ($is_already_absent) {
@@ -126,9 +130,9 @@ class Karyawan extends CI_Controller {
 				'kegiatan' => '-',
 				'status' => 'true',
 				'keterangan_izin' => $this->input->post('keterangan_izin'),
-				'jam_masuk' => '00:00:00', // Mengosongkan jam_masuk
-				'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
-				'date' => $tanggal_sekarang, // Menyimpan tanggal izin
+				'jam_masuk' => '00:00:00',
+				'jam_pulang' => '00:00:00',
+				'date' => $tanggal_sekarang,
 			];
 			$this->m_model->tambah_data('absensi', $data);
 			$this->session->set_flashdata('berhasil_izin', 'Berhasil Izin.');
@@ -137,6 +141,7 @@ class Karyawan extends CI_Controller {
 		redirect(base_url('karyawan/absen'));
 	}
 
+	// Aksi pembaruan status izin karyawan
 	public function aksi_update_izin()
     {
         $id_karyawan = $this->session->userdata('id');
@@ -156,18 +161,21 @@ class Karyawan extends CI_Controller {
         }
     }
 
+	// Aksi 'pulang' yang memperbarui status dan waktu pulang karyawan
 	public function pulang($id) {
         $this->m_model->updateStatusPulang($id);
 		$this->session->set_flashdata('berhasil_pulang', 'Berhasil pulang.');
         redirect('karyawan/absen');
     }
 
+	// Menghapus data absensi karyawan berdasarkan ID
 	public function hapus($id) {
         $this->m_model->delete('absensi', 'id', $id);
 		$this->session->set_flashdata('berhasil_menghapus', 'Data berhasil dihapus.');
 		redirect(base_url('karyawan/absen'));
     }
 
+	// Pembaruan profil karyawan
 	public function edit_profile()
 	{
 		$password_lama = $this->input->post('password_lama');
@@ -213,10 +221,11 @@ class Karyawan extends CI_Controller {
 		}
 	}
 
+	//  Pembaruan foto profil karyawan
 	public function edit_foto() {
-		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
-		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
-		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
+		$config['upload_path'] = './assets/images/user/';
+		$config['allowed_types'] = 'jpg|jpeg|png';
+		$config['max_size'] = 5120;
 	
 		$this->load->library('upload', $config);
 	
@@ -224,26 +233,22 @@ class Karyawan extends CI_Controller {
 			$upload_data = $this->upload->data();
 			$file_name = $upload_data['file_name'];
 	
-			// Update nama file gambar baru ke dalam database untuk user yang sesuai
-			$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
-			$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
+			$user_id = $this->session->userdata('id');
+			$current_image = $this->m_model->get_current_image($user_id);
 	
 			if ($current_image !== 'User.png') {
-				// Hapus gambar saat ini jika bukan 'User.png'
 				unlink('./assets/images/user/' . $current_image);
 			}
 	
-			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
+			$this->m_model->update_image($user_id, $file_name);
 			$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
 
 	
-			// Redirect atau tampilkan pesan keberhasilan
-			redirect('karyawan/profile'); // Gantilah dengan halaman yang sesuai
+			redirect('karyawan/profile');
 		} else {
 			$error = array('error' => $this->upload->display_errors());
 			$this->session->set_flashdata('error_profile', $error['error']);
 			redirect('karyawan/profile');
-			// Tangani kesalahan unggah gambar
 		}
 	}
 }

@@ -1,16 +1,17 @@
 <?php
+// Relasi nama karyawan
 function nama_karyawan($id)
 {
-    $ci =& get_instance();
-    $ci->load->database();
-    $result = $ci->db->where('id', $id)->get('user');
+    $ci =& get_instance(); // Mendapatkan instance CodeIgniter
+    $ci->load->database(); // Memuat library database CodeIgniter
+    $result = $ci->db->where('id', $id)->get('user'); // Mendapatkan data karyawan berdasarkan ID
     foreach ($result->result() as $c) {
-        $stmt = $c->nama_depan.' '.$c->nama_belakang;
-        return $stmt;
+        $stmt = $c->nama_depan.' '.$c->nama_belakang; // Menggabungkan nama depan dan nama belakang
+        return $stmt; // Mengembalikan nama lengkap karyawan
     }
 }
 
-
+// Format tanggal Indonesia
 function convDate($date) 
 {
     $bulan = array(
@@ -28,11 +29,11 @@ function convDate($date)
         12 => 'Desember'
     );
 
-    $tanggal = date('d', strtotime($date));
-    $bulan = $bulan[date('n', strtotime($date))];
-    $tahun = date('Y', strtotime($date));
+    $tanggal = date('d', strtotime($date)); // Mengambil tanggal dari timestamp
+    $bulan = $bulan[date('n', strtotime($date))]; // Mengambil bulan dalam bentuk string
+    $tahun = date('Y', strtotime($date)); // Mengambil tahun dari timestamp
 
-    return $tanggal . ' ' . $bulan . ' ' . $tahun;
+    return $tanggal . ' ' . $bulan . ' ' . $tahun; // Mengembalikan tanggal yang diformat
 }
 
 ?>

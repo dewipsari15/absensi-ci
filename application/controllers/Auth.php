@@ -8,12 +8,13 @@ class Auth extends CI_Controller {
 		$this->load->model('m_model');
 	}
 
-	// login
+	// Menampilkan halaman login
 	public function index()
 	{
 		$this->load->view('auth/login');
 	}
 
+    // Aksi untuk login
 	public function aksi_login()
     {
         // Mengambil data email dan password yang dikirimkan melalui form login.
@@ -59,12 +60,13 @@ class Auth extends CI_Controller {
         }
     }
 
-	// register
+	// Menampilkan halaman register karyawan
 	public function register()
 	{
 		$this->load->view('auth/register');
 	}
 
+    // Aksi register untuk registrasi karyawan
     public function aksi_register()
     { 
         $username = $this->input->post('username', true);
@@ -103,12 +105,13 @@ class Auth extends CI_Controller {
         }
     }
     
-    // register admin
+    // Menampilkan halaman register admin
     public function register_admin()
 	{
         $this->load->view('auth/register_admin');
 	}
     
+    // Aksi register untuk registrasi admin
     public function aksi_register_admin()
     { 
         $username = $this->input->post('username', true);
@@ -147,7 +150,7 @@ class Auth extends CI_Controller {
         }
     }
     
-	// logout
+	// Aksi logout
 	function logout()
     {
         $this->session->sess_destroy();

@@ -25,9 +25,11 @@
                                     value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ''; ?>">
                             </div>
                             <?php echo isset($_GET['end_date']) ? $_GET['end_date'] : ''; ?>
-                            <button type="submit" class="btn btn-success m-2">Filter</button>
+                            <button type="submit" class="btn btn-success m-2"><i
+                                    class="fa-regular fa-floppy-disk fa-xl"></i></button>
                             <button type="submit" name="submit" class="btn btn-sm btn-primary m-2"
-                                formaction="<?php echo base_url('admin/export_mingguan')?>">Export</button>
+                                formaction="<?php echo base_url('admin/export_mingguan')?>"><i
+                                    class="fas fa-download fa-xl"></i></button>
                         </div>
                     </form>
                     <br>
@@ -35,14 +37,14 @@
                     <br>
                     <div class="table-responsive">
                         <?php if (empty($perminggu)): ?>
-                        <h5 class="text-center">Tidak ada data diminggu ini ini.</h5>
+                        <h5 class="text-center">Tidak ada data diminggu ini.</h5>
                         <p class="text-center">Silahkan pilih Minggu lain.</p>
                         <?php else: ?>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">N</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Masuk</th>
