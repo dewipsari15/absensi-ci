@@ -847,9 +847,14 @@ class Admin extends CI_Controller {
     }
 
     // Menghapus data karyawan berdasarkan ID
-	public function hapus($id) {
+    public function hapus($id) {
+        // Menghapus data terkait di tabel 'absensi'
+        $this->m_model->delete('absensi', 'id_karyawan', $id);
+    
+        // Menghapus data dari tabel 'user'
         $this->m_model->delete('user', 'id', $id);
-		$this->session->set_flashdata('berhasil_menghapus', 'Data berhasil dihapus.');
-		redirect(base_url('admin/karyawan'));
+    
+        $this->session->set_flashdata('berhasil_menghapus', 'Data berhasil dihapus.');
+        redirect(base_url('admin/karyawan'));
     }
 }

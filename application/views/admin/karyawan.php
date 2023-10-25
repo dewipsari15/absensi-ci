@@ -80,4 +80,16 @@ function hapus(id) {
 }
 </script>
 
+<?php if($this->session->flashdata('berhasil_menghapus')){ ?>
+<script>
+Swal.fire({
+    title: "Berhasil",
+    text: "<?php echo $this->session->flashdata('berhasil_menghapus'); ?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
 </html>
