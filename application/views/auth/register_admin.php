@@ -17,23 +17,17 @@
     <div class="container">
         <div class="cover">
             <div class="front">
-                <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/kecepatan.svg" alt="">
+                <img src="<?php echo base_url('assets/images/login.svg') ?>" alt="">
                 <div class="text">
                     <span class="text-1">Selamat Datang Di <br> Absensi App</span>
                     <span class="text-2">Silahkan Registrasi sebagai admin</span>
-                </div>
-            </div>
-            <div class="back">
-                <div class="text">
-                    <span class="text-1">Complete miles of journey <br> with one step</span>
-                    <span class="text-2">Let's get started</span>
                 </div>
             </div>
         </div>
 
         <div class="forms">
             <div class="form-content">
-                <div class="signup-form">
+                <div class="login-form">
                     <div class="title">Register Admin</div>
                     <form action="<?php echo base_url('auth/aksi_register_admin'); ?>" method="post"
                         enctype="multipart/form-data">
@@ -97,7 +91,8 @@ Swal.fire({
     title: 'Register Gagal',
     text: '<?php echo $this->session->flashdata('register_gagal'); ?>',
     icon: 'error',
-    confirmButtonText: 'OK'
+    showConfirmButton: false,
+    timer: 1500
 });
 </script>
 <?php } ?>

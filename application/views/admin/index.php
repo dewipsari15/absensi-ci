@@ -134,4 +134,16 @@
     </div>
 </body>
 
+<?php if($this->session->flashdata('berhasil_login')){ ?>
+<script>
+Swal.fire({
+    title: 'Berhasil Login',
+    text: '<?php echo $this->session->flashdata('berhasil_login'); ?>',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500
+})
+</script>
+<?php } ?>
+
 </html>

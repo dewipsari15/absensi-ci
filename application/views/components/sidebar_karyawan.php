@@ -45,8 +45,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a class="navbar-brand">
-                    <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/digides_absensi.svg" height="50"
-                        alt="" loading="lazy" />
+                    <img src="<?php echo base_url('assets/images/absensi.svg') ?>" height="50" alt="" loading="lazy" />
                 </a>
                 <h5>Absensi Karyawan</h5>
                 <ul class="navbar-nav ms-auto d-flex flex-row">

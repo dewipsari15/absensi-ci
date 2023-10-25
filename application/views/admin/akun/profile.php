@@ -29,16 +29,17 @@
                                 <hr>
                                 <form action="<?php echo base_url('admin/edit_foto'); ?>" method="post"
                                     enctype="multipart/form-data">
-                                    <div class="mb-3 px-5 col-md-12 image-container mt-3">
-                                        <h5>Preview Image :</h5>
+                                    <div class="mb-5 col-md-12 img-account-profile rounded-circle mt-3">
+                                        <h6>Preview Image :</h6>
                                         <img class="rounded-circle" id="preview-image" src="#" alt="" width="150" />
                                     </div>
                                     <label for="image_upload" class="btn btn-primary">
                                         <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         <input type="file" id="image_upload" name="userfile" style="display: none;">
                                     </label>
-                                    <button type="submit" class="btn btn-success"><i
-                                            class="fa-regular fa-floppy-disk fa-xl"></i></button>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa-regular fa-floppy-disk fa-xl"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -52,7 +53,7 @@
                                     <div class="mb-3">
                                         <label class="small mb-1" for="email">Email</label>
                                         <input class="form-control" id="email" type="email" placeholder="Masukan email"
-                                            value="<?php echo $user->email ?>" name="email">
+                                            value="<?php echo $user->email ?>" name="email" readOnly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="small mb-1" for="username">Username</label>
@@ -74,6 +75,20 @@
                                                 value="<?php echo $user->nama_belakang ?>" name="nama_belakang">
                                         </div>
                                     </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa-regular fa-floppy-disk fa-xl"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">Password</div>
+                            <div class="card-body">
+                                <form action="<?php echo base_url('admin/update_password'); ?>"
+                                    enctype="multipart/form-data" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="password_lama">Password Lama</label>
                                         <div class="input-group">
@@ -111,8 +126,11 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-success" type="submit"><i
-                                            class="fa-regular fa-floppy-disk fa-xl"></i></button>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa-regular fa-floppy-disk fa-xl"></i>
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

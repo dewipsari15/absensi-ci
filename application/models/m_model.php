@@ -148,6 +148,16 @@ class M_model extends CI_Model
         }
     }
 
+    // Mengupdate password berdasarkan ID
+    public function update_password($id, $new_password)
+    { 
+        $this->db->set('password', $new_password);
+        $this->db->where('id', $id);
+        $this->db->update('user');
+
+        return $this->db->affected_rows() > 0;
+    }
+
     // Memeriksa kehadiran berdasarkan ID karyawan dan tanggal
     public function cek_absen($id_karyawan, $tanggal) {
         $this->db->where('id_karyawan', $id_karyawan);

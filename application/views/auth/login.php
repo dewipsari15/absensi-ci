@@ -15,17 +15,10 @@
     <div class="container">
         <div class="cover">
             <div class="front">
-                <img src="https://digitaldesa.id/templates/homepage/media/misc/icon/kecepatan.svg" alt="">
+                <img src="<?php echo base_url('assets/images/login.svg') ?>" alt="">
                 <div class="text">
                     <span class="text-1">Selamat Datang Di <br> Absensi App</span>
                     <span class="text-2">Silahkan Login</span>
-                </div>
-            </div>
-            <div class="back">
-                <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
-                <div class="text">
-                    <span class="text-1">Complete miles of journey <br> with one step</span>
-                    <span class="text-2">Let's get started</span>
                 </div>
             </div>
         </div>
@@ -44,11 +37,9 @@
                                 <input type="password" placeholder="Enter your password" name="password" id="password"
                                     required>
                             </div>
-                            <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit">
                             </div>
-                            <!-- <div class="text sign-up-text">Silahkan login dulu untuk mengakses aplikasi ini</div> -->
                             <div class="text sign-up-text">Belum mempunyai akun? <a
                                     href="<?php echo base_url('auth/register')?>">registrasi sekarang</a></div>
                         </div>
@@ -78,29 +69,14 @@ passwordToggle.addEventListener('click', function() {
 });
 </script>
 
-
-<?php if($this->session->flashdata('berhasil_login')){ ?>
-<script>
-Swal.fire({
-    title: 'Selamat datang',
-    text: '<?php echo $this->session->flashdata('berhasil_login'); ?>',
-    icon: 'success',
-    confirmButtonText: 'OK'
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location.href = "<?php echo base_url('karyawan'); ?>";
-    }
-});
-</script>
-<?php } ?>
-
 <?php if($this->session->flashdata('gagal_login')){ ?>
 <script>
 Swal.fire({
     title: 'Login Gagal',
     text: '<?php echo $this->session->flashdata('gagal_login'); ?>',
     icon: 'error',
-    confirmButtonText: 'OK'
+    showConfirmButton: false,
+    timer: 1500
 });
 </script>
 <?php } ?>
