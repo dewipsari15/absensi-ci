@@ -163,10 +163,22 @@ class Karyawan extends CI_Controller {
 
 	// Aksi 'pulang' yang memperbarui status dan waktu pulang karyawan
 	public function pulang($id) {
-        $this->m_model->updateStatusPulang($id);
-		$this->session->set_flashdata('berhasil_pulang', 'Berhasil pulang.');
-        redirect('karyawan/absen');
-    }
+		date_default_timezone_set('Asia/Jakarta'); // Set zona waktu sesuai kebutuhan
+		$current_time = strtotime(date("H:i"));
+
+		// Menentukan waktu batas 2.30 PM
+		$limit_time = strtotime('14:30');
+
+		if ($current_time >= $limit_time) {
+			$this->m_model->updateStatusPulang($id);
+			$this->session->set_flashdata('berhasil_pulang', 'Berhasil pulang.');
+			redirect('karyawan/absen');
+		} else {
+			// Pesan kesalahan jika waktu belum melewati batas
+			$this->session->set_flashdata('gagal_pulang', 'Belum waktunya pulang.');
+			redirect('karyawan/absen');
+		}
+	}
 
 	// Menghapus data absensi karyawan berdasarkan ID
 	public function hapus($id) {

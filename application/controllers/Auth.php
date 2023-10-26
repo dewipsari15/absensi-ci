@@ -55,7 +55,7 @@ class Auth extends CI_Controller {
            }
         } else {
             // Jika login gagal, menampilkan pesan kesalahan kepada pengguna.
-           $this->session->set_flashdata('gagal_login', 'Gagal Login!!, Silahkan coba kembali.');
+           $this->session->set_flashdata('gagal_login', 'Silahkan coba kembali.');
            redirect(base_url().'auth'); // Mengarahkan pengguna kembali ke halaman login.
         }
     }

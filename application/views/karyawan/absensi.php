@@ -136,6 +136,18 @@ Swal.fire({
 </script>
 <?php } ?>
 
+<?php if($this->session->flashdata('gagal_pulang')){ ?>
+<script>
+Swal.fire({
+    title: "Error!",
+    text: "<?php echo $this->session->flashdata('gagal_pulang'); ?>",
+    icon: "error",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
+<?php } ?>
+
 <?php if($this->session->flashdata('berhasil_izin')){ ?>
 <script>
 Swal.fire({
